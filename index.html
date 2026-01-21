@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExímIA Ventures | Excelência Empresarial através de IA</title>
+
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdn.emailjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.emailjs.com https:; frame-src 'none';" />
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Excelência Empresarial através de IA. Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
+    <meta name="keywords" content="IA empresarial, consultoria inteligência artificial, automação, transformação digital, educação corporativa, estratégia empresarial" />
+    <meta name="author" content="ExímIA Ventures" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://eximiaventures.com.br/" />
+    <meta property="og:title" content="ExímIA Ventures | Excelência Empresarial através de IA" />
+    <meta property="og:description" content="Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
+    <meta property="og:image" content="https://eximiaventures.com.br/og-image.png" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ExímIA Ventures | Excelência Empresarial através de IA" />
+    <meta name="twitter:description" content="Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
+    <meta name="twitter:image" content="https://eximiaventures.com.br/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://eximiaventures.com.br/" />
+
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect"/>
+    
+    <!-- Organic Tech Fonts: Syne (Display), Inter Tight (Body), JetBrains Mono (Tech), Reenie Beanie (Hand) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&family=Reenie+Beanie&family=Syne:wght@400;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "bg-core": "#050505",
+              "bg-card": "#0A0C10",
+              "bg-float": "#141414",
+              "accent-primary": "#D4FF00", /* Volt */
+              "accent-secondary": "#7000FF", /* Neon Purple */
+              "accent-studio": "#fdbe66", /* Gold / Warm Yellow */
+              "text-primary": "#FFFFFF",
+              "text-secondary": "#888888",
+              "border-subtle": "#222222",
+              
+              /* Excellence Palette */
+              "exc-dark": "#020C14",
+              "exc-card": "#0A1F30",
+              "exc-float": "#112A40",
+              "exc-blue": "#497EBD",
+              "exc-coral": "#F58873",
+              "exc-gold": "#FDBE66",
+              "exc-border": "#1B3C6B",
+              "exc-text": "#CDD5DA",
+              "exc-muted": "#5A7B94",
+
+              /* Academy Palette */
+              "aca-orange": "#FFD700", /* Gold (rgb 255 215 0) - Updated from Neon Orange */
+              "aca-dark": "#1a0500",
+              "aca-card": "#2a0d05",
+            },
+            fontFamily: {
+              "display": ["Syne", "sans-serif"],
+              "body": ["Inter Tight", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"],
+              "hand": ["Reenie Beanie", "cursive"],
+            },
+            backgroundImage: {
+              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwNTA1MDUiLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyIi8+PC9zdmc+')",
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in': 'fadeIn 1s ease-out forwards',
+              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+              'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+              'spin-slow': 'spin 12s linear infinite',
+              'draw': 'draw 2s ease-in-out forwards alternate infinite'
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideInLeft: {
+                '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                '100%': { opacity: '1', transform: 'translateX(0)' },
+              },
+              draw: {
+                '0%': { strokeDashoffset: '10' },
+                '100%': { strokeDashoffset: '0' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #FFFFFF;
+        font-family: 'Inter Tight', sans-serif;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      /* Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #D4FF00; 
+      }
+
+      .text-outline {
+        -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+        color: transparent;
+      }
+
+      .glass-pill {
+        background: rgba(10, 12, 16, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .bento-card {
+        background-color: #0A0C10;
+        border: 1px solid #222;
+        border-radius: 24px;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      .bento-card:hover {
+        border-color: #444;
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+      }
+
+      /* Material Symbols */
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      
+      /* 3D Transform Utilities */
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .rotate-x-12 {
+        transform: rotateX(12deg);
+      }
+      .rotate-x-0 {
+        transform: rotateX(0deg);
+      }
+    </style>
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

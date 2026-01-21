@@ -17,14 +17,14 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
          <div className="relative mb-24 flex flex-col items-center">
             <div className="relative inline-block text-center">
                 {/* Handwriting 'UNLOCK' Highlight - Gold Gradient */}
-                <div className="absolute -top-2 -left-2 md:-top-4 md:-left-8 z-10 pointer-events-none select-none">
+                <div className="absolute -top-12 -left-4 md:-left-12 z-10 pointer-events-none select-none">
                   <span className="font-hand text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-aca-orange to-[#FFAB00] -rotate-6 block drop-shadow-[0_0_15px_rgba(255,215,0,0.5)] animate-fade-in">
                     {t.unlock}
                   </span>
                 </div>
 
                 {/* Typography Pattern: Solid Top, Outlined Bottom */}
-                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[10.5rem] text-white mb-6 relative z-0 leading-[0.85] break-words">
+                <h1 className="font-display font-black text-[11vw] leading-[0.8] text-white uppercase relative z-0 tracking-tighter">
                   <span className="block">{t.title}</span>
                   {/* Outlined text using global CSS class .text-outline. Removed hover effect to keep it transparent. */}
                   <span className="block text-outline">{t.subtitle}</span>

@@ -68,8 +68,8 @@ export const translations = {
     academy: {
       tagHand: 'Learning Loop',
       unlock: 'UNLOCK',
-      title: 'HUMAN',
-      subtitle: 'POTENTIAL',
+      title: 'Human',
+      subtitle: 'Potential',
       desc: "AI isn't about replacing humans. It's about empowering them to reach new heights.",
       buttons: ['VIEW COURSES', 'CORPORATE CONSULTING'],
       btnHand: 'Start Now',
@@ -204,8 +204,8 @@ export const translations = {
     academy: {
       tagHand: 'Loop de Aprendizado',
       unlock: 'DESBLOQUEAR',
-      title: 'POTENCIAL',
-      subtitle: 'HUMANO',
+      title: 'Potencial',
+      subtitle: 'Humano',
       desc: "IA não é sobre substituir humanos. É sobre empoderá-los para alcançar novos patamares.",
       buttons: ['VER CURSOS', 'CONSULTORIA CORP'],
       btnHand: 'Comece Agora',
@@ -340,8 +340,8 @@ export const translations = {
     academy: {
       tagHand: 'Bucle de Aprendizaje',
       unlock: 'DESBLOQUEAR',
-      title: 'POTENCIAL',
-      subtitle: 'HUMANO',
+      title: 'Potencial',
+      subtitle: 'Humano',
       desc: "La IA no se trata de reemplazar humanos. Se trata de empoderarlos para alcanzar nuevas alturas.",
       buttons: ['VER CURSOS', 'CONSULTORÍA CORP'],
       btnHand: 'Empezar',
@@ -476,8 +476,8 @@ export const translations = {
     academy: {
       tagHand: 'Loop di Apprendimento',
       unlock: 'SBLOCCARE',
-      title: 'POTENZIALE',
-      subtitle: 'UMANO',
+      title: 'Potenziale',
+      subtitle: 'Umano',
       desc: "L'IA non riguarda la sostituzione degli umani. Riguarda l'empowerment per raggiungere nuove vette.",
       buttons: ['VEDI CORSI', 'CONSULENZA AZIENDALE'],
       btnHand: 'Inizia Ora',

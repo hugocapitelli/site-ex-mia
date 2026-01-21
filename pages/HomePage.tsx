@@ -69,9 +69,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
               </svg>
             </div>
 
-            {/* Main Title - Improved mobile responsiveness */}
+            {/* Main Title - Reduced font size slightly for better fit */}
             <div className="relative w-full text-center">
-              <h1 className="font-display font-extrabold text-[9vw] sm:text-[8vw] md:text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4 break-words">
+              <h1 className="font-display font-extrabold text-[11vw] md:text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4">
                 <span className="block">{t.heroTitle}</span>
                 <span className="text-outline block">{t.heroSubtitle}</span>
               </h1>
@@ -114,9 +114,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
             
             {/* STUDIO - Warm Gold (Matches StudioPage) */}
-            <div
+            <div 
               onClick={() => onNavigate(Page.STUDIO)}
-              className="bento-card md:col-span-2 p-6 sm:p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[350px] sm:min-h-[400px] hover:border-accent-studio/50"
+              className="bento-card md:col-span-2 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[400px] hover:border-accent-studio/50"
             >
               {/* SVG IMAGE: Detailed Neural Architecture Blueprint */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
@@ -174,17 +174,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
               </div>
               
               <div className="relative z-10 mt-auto">
-                <h3 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-4 group-hover:translate-x-2 transition-transform break-words">{t.studioTitle}</h3>
-                <p className="text-text-secondary text-sm sm:text-base max-w-md group-hover:text-white transition-colors">
+                <h3 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 group-hover:translate-x-2 transition-transform">{t.studioTitle}</h3>
+                <p className="text-text-secondary max-w-md group-hover:text-white transition-colors">
                   {t.studioDesc}
                 </p>
               </div>
             </div>
 
             {/* ACADEMY - Gold/Yellow (Matches AcademyPage) */}
-            <div
+            <div 
               onClick={() => onNavigate(Page.ACADEMY)}
-              className="bento-card md:col-span-1 p-6 sm:p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between bg-bg-card hover:bg-[#111] hover:border-aca-orange/50"
+              className="bento-card md:col-span-1 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between bg-bg-card hover:bg-[#111] hover:border-aca-orange/50"
             >
                {/* SVG IMAGE: Spiral Growth / DNA Structure */}
                <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
@@ -224,19 +224,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                   <div className="w-10 h-10 rounded-full bg-aca-orange/10 text-aca-orange flex items-center justify-center mb-6">
                     <span className="material-symbols-outlined">school</span>
                   </div>
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl text-white mb-2 break-words">{t.academyTitle}</h3>
+                  <h3 className="font-display font-bold text-3xl text-white mb-2">{t.academyTitle}</h3>
                   {/* Handwritten Tag - Gold */}
-                  <div className="font-hand text-2xl sm:text-3xl text-aca-orange mb-4 -rotate-2 group-hover:rotate-0 transition-transform origin-left">{t.humanCentered}</div>
-                  <p className="text-text-secondary text-xs sm:text-sm">
+                  <div className="font-hand text-3xl text-aca-orange mb-4 -rotate-2 group-hover:rotate-0 transition-transform origin-left">{t.humanCentered}</div>
+                  <p className="text-text-secondary text-sm">
                     {t.academyDesc}
                   </p>
                </div>
             </div>
 
             {/* EXCELLENCE - Royal Blue (Matches ExcellencePage) */}
-            <div
+            <div 
               onClick={() => onNavigate(Page.EXCELLENCE)}
-              className="bento-card md:col-span-3 p-6 sm:p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[320px] sm:min-h-[360px] hover:border-exc-blue/50"
+              className="bento-card md:col-span-3 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[360px] hover:border-exc-blue/50"
             >
               {/* Background Texture & Integrated Gears */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
@@ -284,18 +284,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
               </div>
 
               <div className="relative z-10 max-w-2xl">
-                 <div className="flex items-center gap-2 sm:gap-3 mb-4 flex-wrap">
+                 <div className="flex items-center gap-3 mb-4">
                     {/* Updated Icon Color to Blue */}
-                    <span className="material-symbols-outlined text-exc-blue text-3xl sm:text-4xl">balance</span>
-                    <h3 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white break-words">{t.excellenceTitle}</h3>
+                    <span className="material-symbols-outlined text-exc-blue text-4xl">balance</span>
+                    <h3 className="font-display font-bold text-4xl md:text-5xl text-white">{t.excellenceTitle}</h3>
                  </div>
-
+                 
                  {/* Handwritten Tag - Blue */}
-                 <div className="font-hand text-3xl sm:text-4xl text-exc-blue/80 -rotate-2 mb-6 block opacity-90 origin-left transform translate-x-2">
+                 <div className="font-hand text-4xl text-exc-blue/80 -rotate-2 mb-6 block opacity-90 origin-left transform translate-x-2">
                     {t.excellenceHand}
                  </div>
-
-                 <p className="text-text-secondary text-sm sm:text-base md:text-lg leading-relaxed group-hover:text-white transition-colors">
+                 
+                 <p className="text-text-secondary text-lg leading-relaxed group-hover:text-white transition-colors">
                    {t.excellenceDesc}
                   </p>
               </div>
@@ -315,7 +315,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
       <section className="py-24 border-t border-border-subtle bg-bg-core">
         <div className="max-w-[1600px] mx-auto px-4 md:px-10">
           <div className="mb-16 flex flex-col md:flex-row justify-between items-end">
-            <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white max-w-2xl break-words">
+            <h2 className="font-display font-bold text-5xl md:text-7xl text-white max-w-2xl">
               {t.methodologyTitle}<br/>
               <span className="text-text-secondary">{t.methodologySubtitle}</span>
             </h2>
@@ -342,7 +342,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
       {/* 4. CTA SECTION */}
       <section className="py-32 px-4 text-center bg-bg-core">
          <div className="max-w-4xl mx-auto">
-           <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl text-white mb-8 hover:scale-105 transition-transform duration-500 cursor-default break-words">
+           <h2 className="font-display font-black text-5xl md:text-8xl text-white mb-8 hover:scale-105 transition-transform duration-500 cursor-default">
              {t.ctaTitle} <span className="text-accent-primary">{t.ctaHighlight}</span>
            </h2>
            <p className="text-text-secondary text-xl mb-12 max-w-xl mx-auto">

@@ -32,7 +32,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
                  </span>
                </div>
                
-               <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl text-white mb-6 relative z-0 break-words">
+               <h1 className="font-display font-black text-6xl md:text-9xl text-white mb-6 relative z-0">
                  {t.title}<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-exc-blue to-cyan-400">{t.subtitle}</span>
                </h1>
              </div>

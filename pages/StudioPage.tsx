@@ -25,7 +25,7 @@ export const StudioPage: React.FC<StudioPageProps> = ({ onNavigate, lang }) => {
                </span>
              </div>
 
-             <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white mt-2 relative z-0 break-words">
+             <h1 className="font-display font-extrabold text-6xl md:text-8xl text-white mt-2 relative z-0">
                {t.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">{t.titleHighlight}</span><br/>{t.titleEnd}
              </h1>
            </div>
@@ -121,8 +121,8 @@ export const StudioPage: React.FC<StudioPageProps> = ({ onNavigate, lang }) => {
         </div>
 
         {/* CTA */}
-        <div className="bento-card p-8 sm:p-12 md:p-24 text-center bg-gradient-to-b from-bg-card to-bg-core border-accent-studio/20 hover:border-accent-studio transition-colors group">
-          <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-8 group-hover:scale-105 transition-transform break-words">
+        <div className="bento-card p-12 md:p-24 text-center bg-gradient-to-b from-bg-card to-bg-core border-accent-studio/20 hover:border-accent-studio transition-colors group">
+          <h2 className="font-display font-bold text-4xl md:text-6xl text-white mb-8 group-hover:scale-105 transition-transform">
             {t.cta}
           </h2>
           <div className="relative inline-block">

@@ -1,19 +1,19 @@
 import React from 'react';
-import { Page, Language } from '../types';
+import { Link } from 'react-router-dom';
+import { Language } from '../types';
 import { translations } from '../translations';
 
 interface FooterProps {
-  onNavigate: (page: Page) => void;
   lang: Language;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, lang }) => {
+export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
     <footer className="bg-bg-core border-t border-border-subtle py-20 px-10">
       <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between gap-12">
-        
+
         {/* Brand */}
         <div className="max-w-md">
           <div className="h-8 mb-6 text-white">
@@ -39,9 +39,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, lang }) => {
         <div className="flex gap-16">
           <div className="flex flex-col gap-4">
             <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.nav}</h4>
-            <button onClick={() => onNavigate(Page.STUDIO)} className="text-text-secondary hover:text-accent-primary text-sm text-left">{t.nav.studio}</button>
-            <button onClick={() => onNavigate(Page.ACADEMY)} className="text-text-secondary hover:text-accent-primary text-sm text-left">{t.nav.academy}</button>
-            <button onClick={() => onNavigate(Page.EXCELLENCE)} className="text-text-secondary hover:text-accent-primary text-sm text-left">{t.nav.excellence}</button>
+            <Link to="/studio" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.studio}</Link>
+            <Link to="/academy" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.academy}</Link>
+            <Link to="/excellence" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.excellence}</Link>
           </div>
           <div className="flex flex-col gap-4">
             <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.connect}</h4>

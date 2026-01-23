@@ -1,13 +1,13 @@
 import React from 'react';
-import { Page, Language } from '../types';
+import { Link } from 'react-router-dom';
+import { Language } from '../types';
 import { translations } from '../translations';
 
 interface StudioPageProps {
-  onNavigate: (page: Page) => void;
   lang: Language;
 }
 
-export const StudioPage: React.FC<StudioPageProps> = ({ onNavigate, lang }) => {
+export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
   const t = translations[lang].studio;
 
   return (
@@ -129,13 +129,13 @@ export const StudioPage: React.FC<StudioPageProps> = ({ onNavigate, lang }) => {
              <div className="absolute -top-10 -left-12 font-hand text-3xl md:text-4xl font-bold text-accent-studio -rotate-12 hidden md:block">
                 {t.ctaHand} ⤵
              </div>
-             <button 
-                onClick={() => onNavigate(Page.CONTACT)}
+             <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-accent-studio transition-colors"
              >
                 <span>{t.ctaButton}</span>
                 <span className="material-symbols-outlined">arrow_forward</span>
-             </button>
+             </Link>
           </div>
         </div>
 

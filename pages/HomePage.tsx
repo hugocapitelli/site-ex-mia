@@ -1,24 +1,24 @@
 import React from 'react';
-import { Page, Language } from '../types';
+import { Link } from 'react-router-dom';
+import { Language } from '../types';
 import { translations } from '../translations';
 
 interface HomePageProps {
-  onNavigate: (page: Page) => void;
   lang: Language;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
+export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
   const t = translations[lang].home;
   const navT = translations[lang].nav;
 
   return (
     <div className="bg-bg-core min-h-screen selection:bg-accent-primary selection:text-black">
-      
+
       {/* 1. HERO SECTION */}
       <section className="relative min-h-screen flex flex-col justify-center px-4 md:px-10 pt-32 pb-20 overflow-hidden group">
         <div className="absolute top-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-accent-secondary/20 rounded-full blur-[120px] pointer-events-none opacity-40 mix-blend-screen animate-pulse-slow"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-accent-primary/10 rounded-full blur-[100px] pointer-events-none opacity-30 mix-blend-screen"></div>
-        
+
         <div className="max-w-[1600px] mx-auto w-full relative z-10 flex flex-col h-full justify-between">
           <div className="flex justify-between items-end border-b border-border-subtle pb-6 mb-8 animate-fade-in-up">
             <div className="font-mono text-xs text-text-secondary">
@@ -38,9 +38,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
           <div className="relative animate-fade-in-up delay-100 flex-grow flex flex-col justify-center items-center">
             {/* Dashed Arrow SVG - Adjusted position for new text size */}
             <div className="absolute top-[55%] left-[2%] w-[80%] h-[65%] pointer-events-none hidden md:block z-0 mix-blend-screen">
-              <svg 
-                className="w-full h-full overflow-visible organic-arrow" 
-                viewBox="0 0 260 140" 
+              <svg
+                className="w-full h-full overflow-visible organic-arrow"
+                viewBox="0 0 260 140"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
@@ -82,22 +82,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
             <p className="max-w-xl text-lg md:text-xl text-text-secondary font-light leading-relaxed text-center md:text-left">
               {t.heroDesc}
             </p>
-            
+
             <div className="relative">
               {/* Handwritten CTA Annotation - REDUCED SIZE */}
               <div className="absolute -top-12 -left-8 font-hand text-3xl md:text-4xl font-bold text-accent-primary -rotate-12 hidden md:block opacity-0 animate-fade-in delay-700" style={{ animationFillMode: 'forwards' }}>
                  {t.heroHand} <span className="text-2xl">⤵</span>
               </div>
 
-              <button 
-                onClick={() => onNavigate(Page.CONTACT)}
-                className="group relative px-8 py-4 bg-white rounded-full overflow-hidden hover:scale-105 transition-transform"
+              <Link
+                to="/contact"
+                className="group relative px-8 py-4 bg-white rounded-full overflow-hidden hover:scale-105 transition-transform inline-block"
               >
                 <div className="absolute inset-0 bg-accent-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                 <span className="relative font-bold text-black text-sm tracking-widest uppercase flex items-center gap-2">
                   {t.initiate} <span className="material-symbols-outlined">arrow_downward</span>
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -112,10 +112,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
-            
+
             {/* STUDIO - Warm Gold (Matches StudioPage) */}
-            <div 
-              onClick={() => onNavigate(Page.STUDIO)}
+            <Link
+              to="/studio"
               className="bento-card md:col-span-2 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[400px] hover:border-accent-studio/50"
             >
               {/* SVG IMAGE: Detailed Neural Architecture Blueprint */}
@@ -125,13 +125,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                     <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(253, 190, 102, 0.1)" strokeWidth="0.5"/>
                   </pattern>
                   <rect width="100%" height="100%" fill="url(#gridStudio)" />
-                  
+
                   {/* Isometric / Network Nodes */}
                   <g transform="translate(100,100)" stroke="#fdbe66" strokeWidth="1" fill="none">
                     {/* Node 1 */}
                     <circle cx="100" cy="150" r="4" fill="#fdbe66" className="animate-pulse" />
                     <circle cx="100" cy="150" r="30" strokeOpacity="0.3" />
-                    
+
                     {/* Node 2 */}
                     <circle cx="300" cy="50" r="4" fill="#fdbe66" className="animate-pulse" style={{animationDelay: '1s'}} />
                     <circle cx="300" cy="50" r="40" strokeOpacity="0.3" />
@@ -158,7 +158,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                 </svg>
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-card via-bg-card/40 to-transparent"></div>
               </div>
-              
+
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-orange-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
@@ -172,18 +172,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                   <span className="material-symbols-outlined">compass_calibration</span>
                 </div>
               </div>
-              
+
               <div className="relative z-10 mt-auto">
                 <h3 className="font-display font-bold text-4xl md:text-5xl text-white mb-4 group-hover:translate-x-2 transition-transform">{t.studioTitle}</h3>
                 <p className="text-text-secondary max-w-md group-hover:text-white transition-colors">
                   {t.studioDesc}
                 </p>
               </div>
-            </div>
+            </Link>
 
             {/* ACADEMY - Gold/Yellow (Matches AcademyPage) */}
-            <div 
-              onClick={() => onNavigate(Page.ACADEMY)}
+            <Link
+              to="/academy"
               className="bento-card md:col-span-1 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between bg-bg-card hover:bg-[#111] hover:border-aca-orange/50"
             >
                {/* SVG IMAGE: Spiral Growth / DNA Structure */}
@@ -194,17 +194,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                        {/* Rising Spirals */}
                        <path d="M100 600 Q200 500 100 400 T100 200" strokeOpacity="0.2" />
                        <path d="M300 600 Q200 500 300 400 T300 200" strokeOpacity="0.2" />
-                       
+
                        {/* Rungs of the ladder/DNA */}
                        <path d="M100 550 L300 550" strokeOpacity="0.1" />
                        <path d="M120 500 L280 500" strokeOpacity="0.1" />
                        <path d="M140 450 L260 450" strokeOpacity="0.1" />
                        <path d="M100 400 L300 400" strokeOpacity="0.1" />
                        <path d="M120 350 L280 350" strokeOpacity="0.1" />
-                       
+
                        {/* Central Growth Line */}
                        <path d="M200 600 L200 150" strokeWidth="2" strokeDasharray="4 4" strokeOpacity="0.5" />
-                       
+
                        {/* Top Star/Spark */}
                        <g transform="translate(200, 150)">
                          <circle r="10" fill="#FFD700" opacity="0.5" className="animate-pulse" />
@@ -231,11 +231,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                     {t.academyDesc}
                   </p>
                </div>
-            </div>
+            </Link>
 
             {/* EXCELLENCE - Royal Blue (Matches ExcellencePage) */}
-            <div 
-              onClick={() => onNavigate(Page.EXCELLENCE)}
+            <Link
+              to="/excellence"
               className="bento-card md:col-span-3 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[360px] hover:border-exc-blue/50"
             >
               {/* Background Texture & Integrated Gears */}
@@ -289,23 +289,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
                     <span className="material-symbols-outlined text-exc-blue text-4xl">balance</span>
                     <h3 className="font-display font-bold text-4xl md:text-5xl text-white">{t.excellenceTitle}</h3>
                  </div>
-                 
+
                  {/* Handwritten Tag - Blue */}
                  <div className="font-hand text-4xl text-exc-blue/80 -rotate-2 mb-6 block opacity-90 origin-left transform translate-x-2">
                     {t.excellenceHand}
                  </div>
-                 
+
                  <p className="text-text-secondary text-lg leading-relaxed group-hover:text-white transition-colors">
                    {t.excellenceDesc}
                   </p>
               </div>
-              
+
               {/* Technical Footer Line */}
               <div className="relative z-10 mt-8 flex items-center gap-2">
                   <div className="h-px w-12 bg-exc-blue"></div>
                   <span className="font-mono text-xs text-exc-blue tracking-widest">SYS.GOV_V.2.0</span>
               </div>
-            </div>
+            </Link>
 
           </div>
         </div>
@@ -348,17 +348,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, lang }) => {
            <p className="text-text-secondary text-xl mb-12 max-w-xl mx-auto">
              {t.ctaDesc}
            </p>
-           
+
            <div className="relative inline-block">
              <div className="absolute -top-10 -left-12 font-hand text-3xl md:text-4xl font-bold text-accent-primary -rotate-12 hidden md:block">
                 {t.ctaHand} ⤵
              </div>
-             <button 
-               onClick={() => onNavigate(Page.CONTACT)}
-               className="px-10 py-5 bg-accent-primary rounded-full text-black font-bold text-lg hover:bg-white hover:scale-110 transition-all shadow-[0_0_40px_rgba(212,255,0,0.3)]"
+             <Link
+               to="/contact"
+               className="px-10 py-5 bg-accent-primary rounded-full text-black font-bold text-lg hover:bg-white hover:scale-110 transition-all shadow-[0_0_40px_rgba(212,255,0,0.3)] inline-block"
              >
                {t.ctaButton}
-             </button>
+             </Link>
            </div>
          </div>
       </section>

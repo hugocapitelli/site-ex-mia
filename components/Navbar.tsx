@@ -1,58 +1,60 @@
 import React, { useState } from 'react';
-import { Page, Language } from '../types';
+import { Link, useLocation } from 'react-router-dom';
+import { Language } from '../types';
 import { translations } from '../translations';
 
 interface NavbarProps {
-  currentPage: Page;
-  onNavigate: (page: Page) => void;
   currentLang: Language;
   onLanguageChange: (lang: Language) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, currentLang, onLanguageChange }) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const t = translations[currentLang].nav;
+  const location = useLocation();
 
   const navLinks = [
-    { label: t.studio, page: Page.STUDIO },
-    { label: t.academy, page: Page.ACADEMY },
-    { label: t.excellence, page: Page.EXCELLENCE },
+    { label: t.studio, path: '/studio' },
+    { label: t.academy, path: '/academy' },
+    { label: t.excellence, path: '/excellence' },
   ];
 
   const languages = [Language.EN, Language.PT, Language.ES, Language.IT];
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
       {/* Floating Pill Container - Top Center */}
       <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[95vw]">
         <nav className="glass-pill rounded-full px-2 py-2 md:px-3 md:py-2 flex items-center gap-2 md:gap-4 shadow-2xl relative">
-          
+
           {/* Logo Icon Only - Solid White Background */}
-          <button 
-            onClick={() => onNavigate(Page.HOME)}
+          <Link
+            to="/"
             className="w-10 h-10 rounded-full bg-white border border-white flex items-center justify-center hover:scale-105 transition-transform overflow-hidden p-2 text-black shadow-[0_0_10px_rgba(255,255,255,0.2)]"
           >
              <svg viewBox="0 0 120.4 136.01" className="w-full h-full fill-current">
                 <path d="M58.88,132.06c0,2.84,2.96,4.72,5.53,3.5l51-24.09c3.04-1.44,4.99-4.51,4.98-7.89l-.02-23.87v-1.81s-.06-60.95-.06-60.95c0-3.57-2.31-6.73-5.72-7.81L87.3.46c-5.29-1.68-10.7,2.27-10.69,7.83l.04,38.51c.01,11.07,7.12,20.88,17.63,24.32l23.61,7.78-53.28,21.38c-3.48,1.39-5.75,4.77-5.75,8.51l.02,23.27Z"/>
                 <path d="M61.33,3.85c-.02-2.84-2.99-4.7-5.56-3.47L4.93,24.8C1.9,26.27-.02,29.35,0,32.73l.18,23.87v1.81s.47,60.94.47,60.94c.03,3.57,2.36,6.71,5.77,7.77l27.35,8.51c5.3,1.65,10.68-2.34,10.64-7.89l-.29-38.51c-.08-11.07-7.26-20.83-17.79-24.21l-23.66-7.62,53.14-21.73c3.47-1.42,5.72-4.8,5.69-8.55l-.17-23.27Z"/>
              </svg>
-          </button>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.label}
-                onClick={() => onNavigate(link.page)}
+                to={link.path}
                 className={`px-5 py-2 rounded-full text-xs font-bold tracking-widest transition-all ${
-                  currentPage === link.page 
-                    ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]' 
+                  isActive(link.path)
+                    ? 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]'
                     : 'text-gray-400 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </div>
 
@@ -89,16 +91,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, current
           </div>
 
           {/* Action Button */}
-          <button 
-            onClick={() => onNavigate(Page.CONTACT)}
+          <Link
+            to="/contact"
             className="hidden md:flex items-center gap-2 bg-accent-primary text-black px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#bfff00] transition-colors"
           >
             <span>{t.contact}</span>
             <span className="material-symbols-outlined text-sm">arrow_outward</span>
-          </button>
+          </Link>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="md:hidden w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -122,28 +124,24 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate, current
                  </button>
                ))}
             </div>
-            
+
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.label}
-                onClick={() => {
-                  onNavigate(link.page);
-                  setIsMenuOpen(false);
-                }}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
                 className="text-3xl font-display font-bold text-white hover:text-accent-primary transition-colors"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
-            <button 
-              onClick={() => {
-                  onNavigate(Page.CONTACT);
-                  setIsMenuOpen(false);
-              }}
+            <Link
+              to="/contact"
+              onClick={() => setIsMenuOpen(false)}
               className="mt-8 text-xl font-mono text-accent-primary underline decoration-dashed underline-offset-8"
             >
               {t.start}
-            </button>
+            </Link>
           </div>
         </div>
       )}

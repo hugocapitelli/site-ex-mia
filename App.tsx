@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -6,38 +7,29 @@ import { StudioPage } from './pages/StudioPage';
 import { AcademyPage } from './pages/AcademyPage';
 import { ExcellencePage } from './pages/ExcellencePage';
 import { ContactPage } from './pages/ContactPage';
-import { Page, Language } from './types';
+import { Language } from './types';
 
-const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>(Page.HOME);
-  const [currentLang, setCurrentLang] = useState<Language>(Language.EN);
+// Scroll to top on route change
+const ScrollToTop: React.FC = () => {
+  const { pathname } = useLocation();
 
-  // Scroll to top whenever currentPage changes
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentPage]);
+  }, [pathname]);
 
-  const renderPage = () => {
-    switch (currentPage) {
-      case Page.HOME:
-        return <HomePage onNavigate={setCurrentPage} lang={currentLang} />;
-      case Page.STUDIO:
-        return <StudioPage onNavigate={setCurrentPage} lang={currentLang} />;
-      case Page.ACADEMY:
-        return <AcademyPage lang={currentLang} />;
-      case Page.EXCELLENCE:
-        return <ExcellencePage lang={currentLang} />;
-      case Page.CONTACT:
-        return <ContactPage lang={currentLang} />;
-      default:
-        return <HomePage onNavigate={setCurrentPage} lang={currentLang} />;
-    }
-  };
+  return null;
+};
 
+// Layout wrapper with Navbar and Footer
+const Layout: React.FC<{
+  children: React.ReactNode;
+  currentLang: Language;
+  onLanguageChange: (lang: Language) => void;
+}> = ({ children, currentLang, onLanguageChange }) => {
   return (
     <div className="flex flex-col min-h-screen bg-bg-core selection:bg-accent-primary selection:text-black relative">
-      
-      {/* Brand Watermark - Top Right - Removed animate-fade-in to fix opacity override */}
+
+      {/* Brand Watermark - Top Right */}
       <div className="fixed top-6 right-6 z-40 w-10 h-10 md:w-14 md:h-14 opacity-5 pointer-events-none mix-blend-screen">
         <svg viewBox="0 0 120.4 136.01" className="w-full h-full fill-white">
           <path d="M58.88,132.06c0,2.84,2.96,4.72,5.53,3.5l51-24.09c3.04-1.44,4.99-4.51,4.98-7.89l-.02-23.87v-1.81s-.06-60.95-.06-60.95c0-3.57-2.31-6.73-5.72-7.81L87.3.46c-5.29-1.68-10.7,2.27-10.69,7.83l.04,38.51c.01,11.07,7.12,20.88,17.63,24.32l23.61,7.78-53.28,21.38c-3.48,1.39-5.75,4.77-5.75,8.51l.02,23.27Z"/>
@@ -45,17 +37,45 @@ const App: React.FC = () => {
         </svg>
       </div>
 
-      <Navbar 
-        currentPage={currentPage} 
-        onNavigate={setCurrentPage} 
+      <Navbar
         currentLang={currentLang}
-        onLanguageChange={setCurrentLang}
+        onLanguageChange={onLanguageChange}
       />
       <main className="flex-grow">
-        {renderPage()}
+        {children}
       </main>
-      <Footer onNavigate={setCurrentPage} lang={currentLang} />
+      <Footer lang={currentLang} />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  const [currentLang, setCurrentLang] = useState<Language>(() => {
+    // Try to get language from localStorage
+    const saved = localStorage.getItem('eximia-lang');
+    return (saved as Language) || Language.EN;
+  });
+
+  // Save language to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem('eximia-lang', currentLang);
+  }, [currentLang]);
+
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
+        <Routes>
+          <Route path="/" element={<HomePage lang={currentLang} />} />
+          <Route path="/studio" element={<StudioPage lang={currentLang} />} />
+          <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
+          <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
+          <Route path="/contact" element={<ContactPage lang={currentLang} />} />
+          {/* Fallback to home for unknown routes */}
+          <Route path="*" element={<HomePage lang={currentLang} />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 };
 

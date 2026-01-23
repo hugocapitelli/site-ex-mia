@@ -14,20 +14,20 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
        <div className="max-w-[1400px] mx-auto">
          
          {/* Hero - Centered Title */}
-         <div className="relative mb-24 flex flex-col items-center">
+         <div className="relative mb-24 flex flex-col items-center overflow-visible">
             <div className="relative inline-block text-center">
                 {/* Handwriting 'UNLOCK' Highlight - Gold Gradient */}
-                <div className="absolute -top-12 -left-4 md:-left-12 z-10 pointer-events-none select-none">
-                  <span className="font-hand text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-aca-orange to-[#FFAB00] -rotate-6 block drop-shadow-[0_0_15px_rgba(255,215,0,0.5)] animate-fade-in">
+                <div className="absolute -top-8 left-0 md:left-4 z-10 pointer-events-none select-none">
+                  <span className="font-hand text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-aca-orange to-[#FFAB00] -rotate-6 block drop-shadow-[0_0_15px_rgba(255,215,0,0.5)] animate-fade-in">
                     {t.unlock}
                   </span>
                 </div>
 
                 {/* Typography Pattern: Solid Top, Outlined Bottom */}
-                <h1 className="font-display font-black text-[11vw] leading-[0.8] text-white uppercase relative z-0 tracking-tighter">
+                <h1 className="font-display font-black text-[8vw] md:text-[9vw] leading-[0.85] text-white uppercase relative z-0 tracking-tighter">
                   <span className="block">{t.title}</span>
                   {/* Outlined text using global CSS class .text-outline. Removed hover effect to keep it transparent. */}
-                  <span className="block text-outline">{t.subtitle}</span>
+                  <span className="block text-outline text-[7vw] md:text-[8vw]">{t.subtitle}</span>
                 </h1>
             </div>
 

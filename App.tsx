@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
 import { Language } from './types';
 
@@ -64,22 +65,26 @@ const App: React.FC = () => {
   }, [currentLang]);
 
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent-primary" /></div>}>
-          <Routes>
-            <Route path="/" element={<HomePage lang={currentLang} />} />
-            <Route path="/studio" element={<StudioPage lang={currentLang} />} />
-            <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
-            <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
-            <Route path="/contact" element={<ContactPage lang={currentLang} />} />
-            {/* Fallback to home for unknown routes */}
-            <Route path="*" element={<HomePage lang={currentLang} />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
+          <ErrorBoundary>
+            <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent-primary" /></div>}>
+              <Routes>
+                <Route path="/" element={<HomePage lang={currentLang} />} />
+                <Route path="/studio" element={<StudioPage lang={currentLang} />} />
+                <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
+                <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
+                <Route path="/contact" element={<ContactPage lang={currentLang} />} />
+                {/* Fallback to home for unknown routes */}
+                <Route path="*" element={<HomePage lang={currentLang} />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </Layout>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 };
 

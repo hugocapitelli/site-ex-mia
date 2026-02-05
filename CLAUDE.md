@@ -51,4 +51,4 @@ Tailwind CSS via CDN with custom configuration in `index.html`:
 
 ## Environment
 
-Requires `GEMINI_API_KEY` in `.env.local` (referenced in README, exposed as `process.env.GEMINI_API_KEY` via Vite)
+Requires `EMAILJS_PUBLIC_KEY` in `.env.local` (exposed as `process.env.EMAILJS_PUBLIC_KEY` via Vite for EmailJS integration)

@@ -93,7 +93,7 @@ site-exímia-puro/dist/
 1. No EasyPanel, vá para **Settings** → **Environment Variables**
 2. Adicione (se necessário):
    ```
-   VITE_GEMINI_API_KEY=sua-chave-aqui
+   EMAILJS_PUBLIC_KEY=sua-chave-emailjs-aqui
    ```
 
 **Importante**: Variáveis expostas como `VITE_*` serão acessíveis no cliente

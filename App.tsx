@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { StudioPage } from './pages/StudioPage';
-import { AcademyPage } from './pages/AcademyPage';
-import { ExcellencePage } from './pages/ExcellencePage';
-import { ContactPage } from './pages/ContactPage';
 import { Language } from './types';
+
+// Lazy-loaded pages for code splitting
+const StudioPage = lazy(() => import('./pages/StudioPage').then(m => ({ default: m.StudioPage })));
+const AcademyPage = lazy(() => import('./pages/AcademyPage').then(m => ({ default: m.AcademyPage })));
+const ExcellencePage = lazy(() => import('./pages/ExcellencePage').then(m => ({ default: m.ExcellencePage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
 
 // Scroll to top on route change
 const ScrollToTop: React.FC = () => {
@@ -65,15 +67,17 @@ const App: React.FC = () => {
     <BrowserRouter>
       <ScrollToTop />
       <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
-        <Routes>
-          <Route path="/" element={<HomePage lang={currentLang} />} />
-          <Route path="/studio" element={<StudioPage lang={currentLang} />} />
-          <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
-          <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
-          <Route path="/contact" element={<ContactPage lang={currentLang} />} />
-          {/* Fallback to home for unknown routes */}
-          <Route path="*" element={<HomePage lang={currentLang} />} />
-        </Routes>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent-primary" /></div>}>
+          <Routes>
+            <Route path="/" element={<HomePage lang={currentLang} />} />
+            <Route path="/studio" element={<StudioPage lang={currentLang} />} />
+            <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
+            <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
+            <Route path="/contact" element={<ContactPage lang={currentLang} />} />
+            {/* Fallback to home for unknown routes */}
+            <Route path="*" element={<HomePage lang={currentLang} />} />
+          </Routes>
+        </Suspense>
       </Layout>
     </BrowserRouter>
   );

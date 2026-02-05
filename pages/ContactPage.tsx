@@ -7,6 +7,29 @@ interface ContactPageProps {
   lang: Language;
 }
 
+const validateField = (field: string, value: string): string => {
+  switch (field) {
+    case 'name':
+      if (!value.trim()) return 'Name is required';
+      if (value.trim().length < 2) return 'Name must be at least 2 characters';
+      if (!/^[a-zA-ZÀ-ÿ\s]+$/.test(value)) return 'Name must contain only letters and spaces';
+      return '';
+    case 'email':
+      if (!value.trim()) return 'Email is required';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Please enter a valid email';
+      return '';
+    case 'phone':
+      if (value && !/^[\d\s\+\-\(\)]{10,20}$/.test(value)) return 'Please enter a valid phone number';
+      return '';
+    case 'challenge':
+      if (!value.trim()) return 'Message is required';
+      if (value.trim().length < 10) return 'Message must be at least 10 characters';
+      return '';
+    default:
+      return '';
+  }
+};
+
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
   const t = translations[lang].contact;
   const [formState, setFormState] = useState({
@@ -17,9 +40,46 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     challenge: ''
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const handleBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+    const error = validateField(field, formState[field as keyof typeof formState]);
+    setErrors(prev => ({ ...prev, [field]: error }));
+  };
+
+  const handleChange = (field: string, value: string) => {
+    setFormState(prev => ({ ...prev, [field]: value }));
+    if (touched[field]) {
+      const error = validateField(field, value);
+      setErrors(prev => ({ ...prev, [field]: error }));
+    }
+  };
+
+  const isFormValid = () => {
+    const requiredFields = ['name', 'email', 'challenge'];
+    return requiredFields.every(f => {
+      const val = formState[f as keyof typeof formState];
+      return val.trim() && !validateField(f, val);
+    }) && !validateField('phone', formState.phone);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate all fields
+    const allTouched: Record<string, boolean> = {};
+    const allErrors: Record<string, string> = {};
+    for (const field of ['name', 'email', 'phone', 'challenge']) {
+      allTouched[field] = true;
+      allErrors[field] = validateField(field, formState[field as keyof typeof formState]);
+    }
+    setTouched(allTouched);
+    setErrors(allErrors);
+
+    if (Object.values(allErrors).some(e => e)) return;
+
     setStatus('sending');
 
     try {
@@ -118,28 +178,32 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                           {t.name}
                           <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">REQUIRED</span>
                        </label>
-                       <input 
-                          type="text" 
+                       <input
+                          type="text"
                           required
                           value={formState.name}
-                          onChange={(e) => setFormState({...formState, name: e.target.value})}
-                          className="bg-bg-core/50 border border-white/10 rounded-lg py-4 px-4 text-white focus:border-accent-primary focus:outline-none focus:bg-bg-core transition-all" 
-                          placeholder="Ex: John Doe" 
+                          onChange={(e) => handleChange('name', e.target.value)}
+                          onBlur={() => handleBlur('name')}
+                          className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.name && errors.name ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
+                          placeholder="Ex: John Doe"
                        />
+                       {touched.name && errors.name && <span className="text-red-400 text-xs font-mono">{errors.name}</span>}
                     </div>
                     <div className="flex flex-col gap-3 group">
                        <label className="font-mono text-xs text-accent-primary uppercase flex justify-between">
                           {t.email}
                           <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">REQUIRED</span>
                        </label>
-                       <input 
-                          type="email" 
+                       <input
+                          type="email"
                           required
                           value={formState.email}
-                          onChange={(e) => setFormState({...formState, email: e.target.value})}
-                          className="bg-bg-core/50 border border-white/10 rounded-lg py-4 px-4 text-white focus:border-accent-primary focus:outline-none focus:bg-bg-core transition-all" 
-                          placeholder="Ex: john@company.com" 
+                          onChange={(e) => handleChange('email', e.target.value)}
+                          onBlur={() => handleBlur('email')}
+                          className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.email && errors.email ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
+                          placeholder="Ex: john@company.com"
                        />
+                       {touched.email && errors.email && <span className="text-red-400 text-xs font-mono">{errors.email}</span>}
                     </div>
                  </div>
 
@@ -149,13 +213,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                        {t.phone}
                        <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">OPTIONAL</span>
                     </label>
-                    <input 
-                       type="tel" 
+                    <input
+                       type="tel"
                        value={formState.phone}
-                       onChange={(e) => setFormState({...formState, phone: e.target.value})}
-                       className="bg-bg-core/50 border border-white/10 rounded-lg py-4 px-4 text-white focus:border-accent-primary focus:outline-none focus:bg-bg-core transition-all" 
-                       placeholder="+55 (11) 99999-9999" 
+                       onChange={(e) => handleChange('phone', e.target.value)}
+                       onBlur={() => handleBlur('phone')}
+                       className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.phone && errors.phone ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
+                       placeholder="+55 (11) 99999-9999"
                     />
+                    {touched.phone && errors.phone && <span className="text-red-400 text-xs font-mono">{errors.phone}</span>}
                  </div>
 
                  {/* Frequency Selector */}
@@ -190,20 +256,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                        {t.challenge}
                        <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">ENCRYPTED</span>
                     </label>
-                    <textarea 
-                       rows={6} 
+                    <textarea
+                       rows={6}
                        required
                        value={formState.challenge}
-                       onChange={(e) => setFormState({...formState, challenge: e.target.value})}
-                       className="bg-bg-core/50 border border-white/10 rounded-lg py-4 px-4 text-white focus:border-accent-primary focus:outline-none focus:bg-bg-core transition-all resize-none" 
-                       placeholder="..." 
+                       onChange={(e) => handleChange('challenge', e.target.value)}
+                       onBlur={() => handleBlur('challenge')}
+                       className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all resize-none ${touched.challenge && errors.challenge ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
+                       placeholder="..."
                     />
+                    {touched.challenge && errors.challenge && <span className="text-red-400 text-xs font-mono">{errors.challenge}</span>}
                  </div>
 
                  <div className="relative pt-4 flex flex-col md:flex-row items-center justify-between gap-6">
                     <button 
                        type="submit"
-                       disabled={status === 'sending'}
+                       disabled={status === 'sending' || !isFormValid()}
                        className={`
                           w-full md:w-auto bg-white text-black font-bold py-4 px-12 rounded-full 
                           hover:bg-accent-primary transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(212,255,0,0.4)]

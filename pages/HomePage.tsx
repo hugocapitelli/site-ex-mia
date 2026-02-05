@@ -71,7 +71,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
 
             {/* Main Title - Reduced font size slightly for better fit */}
             <div className="relative w-full text-center">
-              <h1 className="font-display font-extrabold text-[8vw] md:text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4">
+              <h1 className="font-display font-extrabold text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4">
                 <span className="block">{t.heroTitle}</span>
                 <span className="text-outline block">{t.heroSubtitle}</span>
               </h1>

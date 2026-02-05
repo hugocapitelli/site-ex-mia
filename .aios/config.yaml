@@ -1,0 +1,18 @@
+# AIOS Project Configuration
+version: 2.1.0
+project:
+  name: site-ex-mia
+  type: existing
+  created: 2025-02-05
+
+environment:
+  bootstrapped: true
+  bootstrap_date: 2025-02-05T12:40:00
+
+workflow:
+  current: development
+  phase: active-development
+
+settings:
+  auto_update_status: true
+  quality_gates_enabled: true

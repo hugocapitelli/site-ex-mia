@@ -24,7 +24,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
                 </div>
 
                 {/* Typography Pattern: Solid Top, Outlined Bottom */}
-                <h1 className="font-display font-black text-6xl md:text-9xl leading-[0.85] text-white uppercase relative z-0 tracking-tighter">
+                <h1 className="font-display font-black text-4xl md:text-6xl lg:text-9xl leading-[0.85] text-white uppercase relative z-0 tracking-tighter">
                   <span className="block">{t.title}</span>
                   {/* Outlined text using global CSS class .text-outline. Removed hover effect to keep it transparent. */}
                   <span className="block text-outline">{t.subtitle}</span>
@@ -37,7 +37,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
                    {t.desc}
                  </p>
                </div>
-               <div className="flex gap-4 relative justify-center md:justify-start">
+               <div className="flex flex-wrap gap-4 relative justify-center md:justify-start">
                   {/* Button Annotation - REDUCED SIZE */}
                   <div className="absolute -top-12 left-4 font-hand text-3xl md:text-4xl font-bold text-aca-orange -rotate-6 hidden md:block">
                      {t.btnHand} ⤵
@@ -52,7 +52,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
          </div>
 
          {/* Comparison */}
-         <div className="grid md:grid-cols-2 gap-4 mb-32">
+         <div className="grid md:grid-cols-2 gap-4 mb-16 md:mb-32">
             <div className="bento-card p-10 bg-bg-card border-white/10 hover:border-white/30 transition-colors">
                <div className="flex justify-between items-start mb-6">
                  <h3 className="font-mono text-gray-500 text-xl">{t.oldWay}</h3>
@@ -87,9 +87,9 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
          </div>
 
          {/* NEW SECTION: Certification Paths */}
-         <div className="mb-32">
+         <div className="mb-16 md:mb-32">
             <h2 className="font-display text-4xl text-white mb-12 border-l-4 border-aca-orange pl-4">{t.pathsTitle}</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                {t.paths.map((path, i) => (
                   <div key={i} className="bento-card p-8 bg-bg-card border-white/10 hover:border-aca-orange/50 hover:-translate-y-2 group transition-all">
                      <div className="text-6xl font-display text-aca-orange/20 mb-4 group-hover:text-aca-orange transition-colors">0{i+1}</div>
@@ -107,7 +107,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
 
          {/* Catalog */}
          <h2 className="font-display text-4xl text-white mb-12 text-right">{t.catalogTitle}</h2>
-         <div className="grid md:grid-cols-3 gap-6">
+         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
             {t.modules.map((module, i) => (
               <div key={i} className="bento-card p-0 bg-bg-card hover:bg-bg-float group cursor-pointer border-dashed border-white/20 hover:border-solid hover:border-aca-orange relative transition-all hover:translate-y-[-4px]">
                  

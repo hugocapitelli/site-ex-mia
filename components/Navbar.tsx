@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
           <div className="relative">
             <button
               onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="w-10 h-8 rounded-full border border-white/20 flex items-center justify-center gap-1 text-[10px] font-mono font-bold text-accent-primary hover:bg-white/10 transition-all"
+              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center gap-1 text-[10px] font-mono font-bold text-accent-primary hover:bg-white/10 transition-all"
               title="Switch Language"
             >
               {currentLang}
@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white"
+            className="md:hidden w-11 h-11 rounded-full bg-white/5 flex items-center justify-center text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
@@ -109,42 +109,46 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-bg-core/95 backdrop-blur-xl flex items-center justify-center md:hidden animate-fade-in">
-          <div className="flex flex-col items-center gap-8">
-            <div className="flex gap-4">
-               {languages.map(lang => (
-                 <button
-                    key={lang}
-                    onClick={() => onLanguageChange(lang)}
-                    className={`font-mono text-sm border px-3 py-1 rounded-full ${currentLang === lang ? 'border-accent-primary text-accent-primary' : 'border-white/20 text-gray-500'}`}
-                 >
-                   {lang}
-                 </button>
-               ))}
-            </div>
-
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.path}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-3xl font-display font-bold text-white hover:text-accent-primary transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link
-              to="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-8 text-xl font-mono text-accent-primary underline decoration-dashed underline-offset-8"
-            >
-              {t.start}
-            </Link>
+      {/* Mobile Menu Overlay - CSS transition for smooth open/close */}
+      <div
+        className={`fixed inset-0 z-40 bg-bg-core/95 backdrop-blur-xl flex items-center justify-center md:hidden transition-all duration-300 overflow-y-auto ${
+          isMenuOpen
+            ? 'opacity-100 pointer-events-auto translate-y-0'
+            : 'opacity-0 pointer-events-none -translate-y-4'
+        }`}
+      >
+        <div className="flex flex-col items-center gap-8">
+          <div className="flex gap-4">
+             {languages.map(lang => (
+               <button
+                  key={lang}
+                  onClick={() => onLanguageChange(lang)}
+                  className={`font-mono text-sm border px-3 py-1 rounded-full ${currentLang === lang ? 'border-accent-primary text-accent-primary' : 'border-white/20 text-gray-500'}`}
+               >
+                 {lang}
+               </button>
+             ))}
           </div>
+
+          {navLinks.map((link) => (
+            <Link
+              key={link.label}
+              to={link.path}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-3xl font-display font-bold text-white hover:text-accent-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setIsMenuOpen(false)}
+            className="mt-8 text-xl font-mono text-accent-primary underline decoration-dashed underline-offset-8"
+          >
+            {t.start}
+          </Link>
         </div>
-      )}
+      </div>
     </>
   );
 };

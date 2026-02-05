@@ -20,7 +20,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
         <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-accent-primary/10 rounded-full blur-[100px] pointer-events-none opacity-30 mix-blend-screen"></div>
 
         <div className="max-w-[1600px] mx-auto w-full relative z-10 flex flex-col h-full justify-between">
-          <div className="flex justify-between items-end border-b border-border-subtle pb-6 mb-8 animate-fade-in-up">
+          <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-end border-b border-border-subtle pb-6 mb-8 animate-fade-in-up">
             <div className="font-mono text-xs text-text-secondary">
               {t.system}<br/>
               {t.loc}
@@ -71,7 +71,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
 
             {/* Main Title - Reduced font size slightly for better fit */}
             <div className="relative w-full text-center">
-              <h1 className="font-display font-extrabold text-[11vw] md:text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4">
+              <h1 className="font-display font-extrabold text-[8vw] md:text-[7vw] leading-[0.85] tracking-tighter text-white uppercase mix-blend-exclusion hover:scale-[1.01] transition-transform duration-700 ease-out inline-block max-w-full px-4">
                 <span className="block">{t.heroTitle}</span>
                 <span className="text-outline block">{t.heroSubtitle}</span>
               </h1>
@@ -116,7 +116,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
             {/* STUDIO - Warm Gold (Matches StudioPage) */}
             <Link
               to="/studio"
-              className="bento-card md:col-span-2 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[400px] hover:border-accent-studio/50"
+              className="bento-card md:col-span-2 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:border-accent-studio/50"
             >
               {/* SVG IMAGE: Detailed Neural Architecture Blueprint */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
@@ -236,7 +236,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
             {/* EXCELLENCE - Royal Blue (Matches ExcellencePage) */}
             <Link
               to="/excellence"
-              className="bento-card md:col-span-3 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[360px] hover:border-exc-blue/50"
+              className="bento-card md:col-span-3 p-8 md:p-12 relative overflow-hidden group cursor-pointer flex flex-col justify-between min-h-[280px] md:min-h-[360px] hover:border-exc-blue/50"
             >
               {/* Background Texture & Integrated Gears */}
               <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-700">
@@ -327,7 +327,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {t.steps.map((step, i) => (
               <div key={i} className="group border-l border-border-subtle pl-6 py-4 hover:border-accent-primary transition-colors duration-300">
                 <span className="font-mono text-xs text-text-secondary mb-2 block">STEP {step.id}</span>
@@ -340,7 +340,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
       </section>
 
       {/* 4. CTA SECTION */}
-      <section className="py-32 px-4 text-center bg-bg-core">
+      <section className="py-16 md:py-32 px-4 text-center bg-bg-core">
          <div className="max-w-4xl mx-auto">
            <h2 className="font-display font-black text-5xl md:text-8xl text-white mb-8 hover:scale-105 transition-transform duration-500 cursor-default">
              {t.ctaTitle} <span className="text-accent-primary">{t.ctaHighlight}</span>

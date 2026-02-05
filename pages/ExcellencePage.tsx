@@ -11,10 +11,10 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
 
   return (
     <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in text-exc-text overflow-hidden">
-       <div className="max-w-[1400px] mx-auto relative">
+       <div className="max-w-[1400px] mx-auto relative overflow-hidden">
           
           {/* Background Gear Decoration (Fixed position related to container) */}
-          <div className="absolute top-0 right-[-10%] opacity-10 pointer-events-none z-0">
+          <div className="absolute top-0 right-0 opacity-10 pointer-events-none z-0">
              <svg width="600" height="600" viewBox="0 0 600 600" className="animate-spin-slow">
                 <circle cx="300" cy="300" r="280" stroke="#497EBD" strokeWidth="2" strokeDasharray="20 10" fill="none" />
                 <circle cx="300" cy="300" r="200" stroke="#497EBD" strokeWidth="1" strokeDasharray="10 5" fill="none" />
@@ -32,7 +32,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
                  </span>
                </div>
                
-               <h1 className="font-display font-black text-6xl md:text-9xl text-white mb-6 relative z-0">
+               <h1 className="font-display font-black text-4xl md:text-6xl lg:text-9xl text-white mb-6 relative z-0">
                  {t.title}<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-exc-blue to-cyan-400">{t.subtitle}</span>
                </h1>
              </div>
@@ -42,8 +42,58 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
              </p>
           </div>
 
-          {/* Feature Highlight - StratOS - DASHBOARD */}
-          <div className="bento-card overflow-hidden relative min-h-[600px] flex items-center justify-center mb-24 border-exc-border bg-bg-card group hover:border-exc-blue/50 transition-all">
+          {/* Mobile Dashboard - simplified KPIs */}
+          <div className="md:hidden mb-24">
+            <div className="flex flex-col gap-4">
+              {/* KPI 1: OEE */}
+              <div className="bento-card p-6 bg-bg-card border-white/5">
+                <h4 className="text-exc-text text-xs font-mono uppercase mb-2">Global OEE</h4>
+                <div className="flex items-end justify-between">
+                  <div className="text-3xl text-white font-display font-bold">87.4%</div>
+                  <div className="text-green-400 text-xs flex items-center">
+                    <span className="material-symbols-outlined text-sm">trending_up</span> +2.4%
+                  </div>
+                </div>
+              </div>
+
+              {/* KPI 2: Hoshin Goals */}
+              <div className="bento-card p-6 bg-bg-card border-white/5">
+                <h4 className="text-exc-text text-xs font-mono uppercase mb-2">Hoshin Goals</h4>
+                <div className="flex items-end justify-between">
+                  <div className="text-3xl text-white font-display font-bold">12/15</div>
+                  <div className="text-xs text-exc-text">On Track</div>
+                </div>
+              </div>
+
+              {/* KPI 3: Value Leakage */}
+              <div className="bento-card p-6 bg-bg-card border-white/5">
+                <h4 className="text-exc-text text-xs font-mono uppercase mb-2">Value Leakage</h4>
+                <div className="flex items-end justify-between">
+                  <div className="text-3xl text-white font-display font-bold">$0</div>
+                  <div className="bg-green-500/10 text-green-500 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Optimal</div>
+                </div>
+              </div>
+
+              {/* Simplified Active Agents */}
+              <div className="bento-card p-6 bg-bg-card border-white/5">
+                <h4 className="text-exc-text text-sm font-bold mb-4">Active Agents</h4>
+                <div className="flex flex-col gap-3">
+                  {['GembaWalker_v2', 'Predictive_Maint', 'Quality_Guard'].map((agent, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                      <div className="flex-1">
+                        <div className="text-xs text-white font-mono">{agent}</div>
+                        <div className="text-[10px] text-exc-text">Uptime: 99.{9 - i}%</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Feature Highlight - StratOS - DASHBOARD (Desktop Only) */}
+          <div className="hidden md:flex bento-card overflow-hidden relative min-h-[600px] items-center justify-center mb-24 border-exc-border bg-bg-card group hover:border-exc-blue/50 transition-all">
              {/* Background Ambience */}
              <div className="absolute inset-0 bg-gradient-to-b from-exc-blue/5 to-transparent"></div>
              
@@ -195,7 +245,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
           </div>
 
           {/* Solutions / Logic */}
-          <div className="grid md:grid-cols-3 gap-8 mb-32">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16 md:mb-32">
              {t.solutions.map((sol, i) => (
                <div key={i} className="bento-card p-8 bg-bg-card border-white/5 hover:border-exc-blue/50 group">
                   <div className="text-xs font-mono text-exc-blue mb-4">0{i+1}_SYS</div>
@@ -207,11 +257,11 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
           </div>
 
           {/* Integrations Section - NEW GRAPHIC */}
-          <div className="mb-32 flex flex-col md:flex-row items-center gap-12">
+          <div className="mb-16 md:mb-32 flex flex-col md:flex-row items-center gap-12">
              <div className="flex-1">
                 <div className="relative inline-block mb-6">
                    {/* Handwriting: Plug & Play - REDUCED SIZE & CHANGED TO BLUE */}
-                   <div className="absolute -top-12 -left-8 font-hand text-3xl md:text-4xl font-bold text-exc-blue -rotate-12 w-[200px]">
+                   <div className="absolute -top-12 -left-4 md:-left-8 font-hand text-3xl md:text-4xl font-bold text-exc-blue -rotate-12 w-[200px]">
                       {t.integrationHand} 
                    </div>
                    <h2 className="font-display text-4xl text-white">{t.integrationTitle}</h2>
@@ -227,7 +277,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
              </div>
              
              {/* Tech Graphic: Network Nodes */}
-             <div className="flex-1 relative h-[300px] w-full bento-card border-exc-blue/20 bg-exc-card/20 overflow-hidden">
+             <div className="flex-1 relative h-[200px] md:h-[300px] w-full bento-card border-exc-blue/20 bg-exc-card/20 overflow-hidden">
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 300">
                    {/* Central Hub */}
                    <circle cx="200" cy="150" r="30" fill="#497EBD" fillOpacity="0.2" stroke="#497EBD" strokeWidth="2" />
@@ -251,7 +301,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
           </div>
 
           {/* KPI / Impact - NEW GRAPHIC */}
-          <div className="bento-card p-12 bg-gradient-to-br from-exc-card to-bg-core border-exc-blue/20 text-center relative overflow-hidden">
+          <div className="bento-card p-6 md:p-12 bg-gradient-to-br from-exc-card to-bg-core border-exc-blue/20 text-center relative overflow-hidden">
              
              {/* Handwriting: Exponential - REDUCED SIZE & CHANGED TO BLUE */}
              <div className="absolute top-8 right-12 md:right-24 font-hand text-3xl md:text-4xl font-bold text-exc-blue rotate-6">
@@ -265,15 +315,15 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">40%</div>
-                      <div className="text-xs font-mono text-exc-muted uppercase">Efficiency Gain</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Efficiency Gain</div>
                    </div>
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">2.5x</div>
-                      <div className="text-xs font-mono text-exc-muted uppercase">Faster Decisions</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Faster Decisions</div>
                    </div>
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">100%</div>
-                      <div className="text-xs font-mono text-exc-muted uppercase">Compliance</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Compliance</div>
                    </div>
                 </div>
              </div>

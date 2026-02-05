@@ -238,7 +238,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                              type="button"
                              key={option.id}
                              onClick={() => setFormState({...formState, frequency: option.id})}
-                             className={`py-3 px-2 rounded-lg text-xs font-bold border transition-all ${
+                             className={`py-3 px-3 rounded-lg text-xs font-bold border transition-all ${
                                 formState.frequency === option.id 
                                    ? 'bg-accent-primary text-black border-accent-primary shadow-[0_0_15px_rgba(212,255,0,0.3)]' 
                                    : 'bg-transparent text-text-secondary border-white/10 hover:border-white/30 hover:text-white'

@@ -11,12 +11,12 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
-    <footer className="bg-bg-core border-t border-border-subtle py-20 px-10">
+    <footer className="bg-bg-core border-t border-border-subtle py-12 px-4 md:py-20 md:px-10">
       <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between gap-12">
 
         {/* Brand */}
         <div className="max-w-md">
-          <div className="h-8 mb-6 text-white">
+          <div className="h-8 max-w-[200px] mb-6 text-white">
             {/* Inline SVG Horizontal Logo */}
             <svg viewBox="0 0 631.53 136.01" className="h-full w-auto fill-current">
               <path d="M58.88,132.06c0,2.84,2.96,4.72,5.53,3.5l51-24.09c3.04-1.44,4.99-4.51,4.98-7.89l-.02-23.87v-1.81s-.06-60.95-.06-60.95c0-3.57-2.31-6.73-5.72-7.81L87.3.46c-5.29-1.68-10.7,2.27-10.69,7.83l.04,38.51c.01,11.07,7.12,20.88,17.63,24.32l23.61,7.78-53.28,21.38c-3.48,1.39-5.75,4.77-5.75,8.51l.02,23.27Z"/>
@@ -36,17 +36,17 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
         </div>
 
         {/* Links */}
-        <div className="flex gap-16">
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-16">
           <div className="flex flex-col gap-4">
             <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.nav}</h4>
-            <Link to="/studio" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.studio}</Link>
-            <Link to="/academy" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.academy}</Link>
-            <Link to="/excellence" className="text-text-secondary hover:text-accent-primary text-sm">{t.nav.excellence}</Link>
+            <Link to="/studio" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.studio}</Link>
+            <Link to="/academy" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.academy}</Link>
+            <Link to="/excellence" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.excellence}</Link>
           </div>
           <div className="flex flex-col gap-4">
             <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.connect}</h4>
-            <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm">LinkedIn</a>
-            <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm">Instagram</a>
+            <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">LinkedIn</a>
+            <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">Instagram</a>
           </div>
         </div>
 

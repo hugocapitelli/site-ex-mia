@@ -120,6 +120,7 @@
         color: #FFFFFF;
         font-family: 'Inter Tight', sans-serif;
         overflow-x: hidden;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
       }
       
       /* Smooth Scrolling */
@@ -182,6 +183,24 @@
       }
       .rotate-x-0 {
         transform: rotateX(0deg);
+      }
+
+      /* Accessibility: Reduced Motion */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Touch devices: disable sticky hover */
+      @media (hover: none) {
+        .bento-card:hover {
+          transform: none;
+          box-shadow: none;
+          border-color: #222;
+        }
       }
     </style>
     <script type="importmap">

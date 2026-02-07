@@ -39,7 +39,7 @@ export const translations = {
       ctaHand: "Let's go"
     },
     studio: {
-      tagHand: 'Studio Division',
+      tagHand: 'Your Rules',
       title: 'YOU',
       titleHighlight: 'IN',
       titleEnd: 'COMMAND',
@@ -176,7 +176,7 @@ export const translations = {
       ctaHand: "Vamos lá"
     },
     studio: {
-      tagHand: 'Divisão Studio',
+      tagHand: 'Suas Regras',
       title: 'VOCÊ',
       titleHighlight: 'NO',
       titleEnd: 'COMANDO',
@@ -313,7 +313,7 @@ export const translations = {
       ctaHand: 'Vamos'
     },
     studio: {
-      tagHand: 'División Estudio',
+      tagHand: 'Tus Reglas',
       title: 'TÚ',
       titleHighlight: 'AL',
       titleEnd: 'MANDO',
@@ -450,7 +450,7 @@ export const translations = {
       ctaHand: 'Andiamo'
     },
     studio: {
-      tagHand: 'Divisione Studio',
+      tagHand: 'Le Tue Regole',
       title: 'TU',
       titleHighlight: 'AL',
       titleEnd: 'COMANDO',

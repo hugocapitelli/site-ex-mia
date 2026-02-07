@@ -11,7 +11,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
 
   return (
     <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in text-exc-text overflow-hidden">
-       <div className="max-w-[1400px] mx-auto relative overflow-hidden">
+       <div className="max-w-[1400px] mx-auto relative">
           
           {/* Background Gear Decoration (Fixed position related to container) */}
           <div className="absolute top-0 right-0 opacity-10 pointer-events-none z-0">
@@ -32,7 +32,7 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
                  </span>
                </div>
                
-               <h1 className="font-display font-black text-4xl md:text-6xl lg:text-9xl text-white mb-6 relative z-0">
+               <h1 className="font-display font-black text-4xl md:text-6xl lg:text-[5vw] text-white mb-6 relative z-0">
                  {t.title}<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-exc-blue to-cyan-400">{t.subtitle}</span>
                </h1>
              </div>
@@ -315,15 +315,15 @@ export const ExcellencePage: React.FC<ExcellencePageProps> = ({ lang }) => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">40%</div>
-                      <div className="text-xs font-mono text-exc-text uppercase">Efficiency Gain</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Waste Reduction</div>
                    </div>
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">2.5x</div>
-                      <div className="text-xs font-mono text-exc-text uppercase">Faster Decisions</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Improvement Velocity</div>
                    </div>
                    <div className="p-6 bg-white/5 rounded-2xl border border-white/5">
                       <div className="text-4xl font-bold text-white mb-2">100%</div>
-                      <div className="text-xs font-mono text-exc-text uppercase">Compliance</div>
+                      <div className="text-xs font-mono text-exc-text uppercase">Goal Alignment</div>
                    </div>
                 </div>
              </div>

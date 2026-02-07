@@ -48,6 +48,10 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">LinkedIn</a>
             <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">Instagram</a>
           </div>
+          <div className="flex flex-col gap-4">
+            <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.internal}</h4>
+            <a href="https://os.eximiaventures.com.br" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">exímIA OS</a>
+          </div>
         </div>
 
       </div>

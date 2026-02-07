@@ -134,7 +134,8 @@ export const translations = {
     footer: {
       rights: 'ALL SYSTEMS OPERATIONAL.',
       nav: 'Navigation',
-      connect: 'Connect'
+      connect: 'Connect',
+      internal: 'Internal'
     }
   },
   [Language.PT]: {
@@ -270,7 +271,8 @@ export const translations = {
     footer: {
       rights: 'TODOS SISTEMAS OPERACIONAIS.',
       nav: 'Navegação',
-      connect: 'Conectar'
+      connect: 'Conectar',
+      internal: 'Interno'
     }
   },
   [Language.ES]: {
@@ -406,7 +408,8 @@ export const translations = {
     footer: {
       rights: 'TODOS LOS SISTEMAS OPERATIVOS.',
       nav: 'Navegación',
-      connect: 'Conectar'
+      connect: 'Conectar',
+      internal: 'Interno'
     }
   },
   [Language.IT]: {
@@ -542,7 +545,8 @@ export const translations = {
     footer: {
       rights: 'TUTTI I SISTEMI OPERATIVI.',
       nav: 'Navigazione',
-      connect: 'Connetti'
+      connect: 'Connetti',
+      internal: 'Interno'
     }
   }
 };

@@ -3,112 +3,100 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ExímIA Ventures | Excelência Empresarial através de IA</title>
+    <title>ExímIA Ventures | Strategic Intelligence for Leaders</title>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Excelência Empresarial através de IA. Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
-    <meta name="keywords" content="IA empresarial, consultoria inteligência artificial, automação, transformação digital, educação corporativa, estratégia empresarial" />
+    <meta name="description" content="Strategic intelligence that amplifies yours. Consulting, technology, and corporate education for leaders who demand measurable results." />
+    <meta name="keywords" content="strategic consulting, AI consulting, operational excellence, corporate education, executive intelligence, business transformation" />
     <meta name="author" content="ExímIA Ventures" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eximiaventures.com.br/" />
-    <meta property="og:title" content="ExímIA Ventures | Excelência Empresarial através de IA" />
-    <meta property="og:description" content="Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
+    <meta property="og:title" content="ExímIA Ventures | Strategic Intelligence for Leaders" />
+    <meta property="og:description" content="Consulting, technology, and corporate education that turns data into executive decisions and decisions into compounding results." />
     <meta property="og:image" content="https://eximiaventures.com.br/og-image.png" />
     <meta property="og:locale" content="pt_BR" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ExímIA Ventures | Excelência Empresarial através de IA" />
-    <meta name="twitter:description" content="Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos." />
+    <meta name="twitter:title" content="ExímIA Ventures | Strategic Intelligence for Leaders" />
+    <meta name="twitter:description" content="Consulting, technology, and corporate education that turns data into executive decisions." />
     <meta name="twitter:image" content="https://eximiaventures.com.br/og-image.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://eximiaventures.com.br/" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    
-    <!-- Organic Tech Fonts: Syne (Display), Inter Tight (Body), JetBrains Mono (Tech), Reenie Beanie (Hand) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&family=Reenie+Beanie&family=Syne:wght@400;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
-    
+
+    <!-- Brandbook Fonts: Playfair Display (Serif), Inter (Sans), JetBrains Mono (Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "bg-core": "#050505",
-              "bg-card": "#0A0C10",
-              "bg-float": "#141414",
-              "accent-primary": "#D4FF00", /* Volt */
-              "accent-secondary": "#7000FF", /* Neon Purple */
-              "accent-studio": "#fdbe66", /* Gold / Warm Yellow */
-              "text-primary": "#FFFFFF",
-              "text-secondary": "#888888",
-              "border-subtle": "#222222",
-              
-              /* Excellence Palette */
-              "exc-dark": "#020C14",
-              "exc-card": "#0A1F30",
-              "exc-float": "#112A40",
-              "exc-blue": "#497EBD",
-              "exc-coral": "#F58873",
-              "exc-gold": "#FDBE66",
-              "exc-border": "#1B3C6B",
-              "exc-text": "#CDD5DA",
-              "exc-muted": "#5A7B94",
+              /* ── Core Surfaces ── */
+              "bg-core":  "#0A0A0A",
+              "bg-card":  "#111111",
+              "bg-float": "#1A1A1A",
+              "bg-overlay": "#222222",
 
-              /* Academy Palette */
-              "aca-orange": "#FFD700", /* Gold (rgb 255 215 0) - Updated from Neon Orange */
-              "aca-dark": "#1a0500",
-              "aca-card": "#2a0d05",
+              /* ── Border Scale ── */
+              "edge":       "#2A2A2A",
+              "edge-light": "#3A3A3A",
+              "edge-hover": "#4A4A4A",
+
+              /* ── Text Scale ── */
+              "cream":     "#E8E0D5",
+              "cream-dim": "#B8B0A5",
+              "dim":       "#666666",
+
+              /* ── Accent: Warm Brown (Primary) ── */
+              "accent":       "#C4A882",
+              "accent-dim":   "#8B7355",
+              "accent-hover": "#D4BC9A",
+
+              /* ── Sage: Green (Secondary) ── */
+              "sage":       "#7C9E8F",
+              "sage-dim":   "#5A7A6B",
+              "sage-hover": "#8CB09F",
+
+              /* ── Atom: Periwinkle (Tertiary) ── */
+              "atom":       "#8B9CC4",
+              "atom-dim":   "#6B7CA4",
+              "atom-hover": "#A0B0D4",
+
+              /* ── Semantic ── */
+              "success": "#22C55E",
+              "warning": "#F59E0B",
+              "error":   "#EF4444",
+              "info":    "#3B82F6",
             },
             fontFamily: {
-              "display": ["Syne", "sans-serif"],
-              "body": ["Inter Tight", "sans-serif"],
-              "mono": ["JetBrains Mono", "monospace"],
-              "hand": ["Reenie Beanie", "cursive"],
-            },
-            backgroundImage: {
-              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwNTA1MDUiLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjIyIi8+PC9zdmc+')",
+              "serif": ["Playfair Display", "Georgia", "serif"],
+              "sans":  ["Inter", "system-ui", "sans-serif"],
+              "mono":  ["JetBrains Mono", "monospace"],
             },
             animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-              'fade-in': 'fadeIn 1s ease-out forwards',
-              'fade-in-up': 'fadeInUp 1s ease-out forwards',
-              'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
-              'spin-slow': 'spin 12s linear infinite',
-              'draw': 'draw 2s ease-in-out forwards alternate infinite'
+              'fade-in':     'fadeIn 0.8s ease-out forwards',
+              'fade-in-up':  'fadeInUp 0.8s ease-out forwards',
+              'pulse-slow':  'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-10px)' },
-              },
               fadeIn: {
-                '0%': { opacity: '0' },
+                '0%':   { opacity: '0' },
                 '100%': { opacity: '1' },
               },
               fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '0%':   { opacity: '0', transform: 'translateY(16px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
               },
-              slideInLeft: {
-                '0%': { opacity: '0', transform: 'translateX(-20px)' },
-                '100%': { opacity: '1', transform: 'translateX(0)' },
-              },
-              draw: {
-                '0%': { strokeDashoffset: '10' },
-                '100%': { strokeDashoffset: '0' },
-              }
             }
           },
         },
@@ -116,90 +104,63 @@
     </script>
     <style>
       body {
-        background-color: #050505;
-        color: #FFFFFF;
-        font-family: 'Inter Tight', sans-serif;
+        background-color: #0A0A0A;
+        color: #E8E0D5;
+        font-family: 'Inter', system-ui, sans-serif;
         overflow-x: hidden;
-        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
       }
-      
-      /* Smooth Scrolling */
+
       html {
         scroll-behavior: smooth;
       }
 
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #050505; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333; 
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #D4FF00; 
-      }
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #0A0A0A; }
+      ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #C4A882; }
 
-      .text-outline {
-        -webkit-text-stroke: 2px rgba(255,255,255,0.4);
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-        paint-order: stroke fill;
-      }
-
-      .glass-pill {
-        background: rgba(10, 12, 16, 0.6);
+      /* ── Glass Panel (Brandbook) ── */
+      .glass-panel {
+        background: rgba(17, 17, 17, 0.6);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(232, 224, 213, 0.05);
+        border-radius: 16px;
       }
 
-      .bento-card {
-        background-color: #0A0C10;
-        border: 1px solid #222;
-        border-radius: 24px;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      /* ── Glass Pill (Navbar) ── */
+      .glass-pill {
+        background: rgba(10, 10, 10, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(232, 224, 213, 0.08);
       }
-      .bento-card:hover {
-        border-color: #444;
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+
+      /* ── Text Gradient (Brandbook) ── */
+      .text-gradient {
+        background: linear-gradient(to right, #E8E0D5, #C4A882);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       /* Material Symbols */
       .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
       }
-      
-      /* 3D Transform Utilities */
-      .perspective-1000 {
-        perspective: 1000px;
-      }
-      .rotate-x-12 {
-        transform: rotateX(12deg);
-      }
-      .rotate-x-0 {
-        transform: rotateX(0deg);
-      }
 
-      /* Accessibility: Reduced Motion */
+      /* 3D Transform Utils */
+      .perspective-1000 { perspective: 1000px; }
+      .rotate-x-12 { transform: rotateX(12deg); }
+      .rotate-x-0 { transform: rotateX(0deg); }
+
+      /* Reduced Motion */
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
           animation-duration: 0.01ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
-        }
-      }
-
-      /* Touch devices: disable sticky hover */
-      @media (hover: none) {
-        .bento-card:hover {
-          transform: none;
-          box-shadow: none;
-          border-color: #222;
         }
       }
     </style>
@@ -212,9 +173,9 @@
       }
     }
     </script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

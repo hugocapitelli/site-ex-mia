@@ -11,13 +11,12 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
 
   return (
-    <footer className="bg-bg-core border-t border-border-subtle py-12 px-4 md:py-20 md:px-10">
-      <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between gap-12">
+    <footer className="bg-bg-core border-t border-edge py-12 px-4 md:py-20 md:px-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between gap-12">
 
         {/* Brand */}
         <div className="max-w-md">
-          <div className="h-8 max-w-[200px] mb-6 text-white">
-            {/* Inline SVG Horizontal Logo */}
+          <div className="h-8 max-w-[200px] mb-6 text-cream">
             <svg viewBox="0 0 631.53 136.01" className="h-full w-auto fill-current">
               <path d="M58.88,132.06c0,2.84,2.96,4.72,5.53,3.5l51-24.09c3.04-1.44,4.99-4.51,4.98-7.89l-.02-23.87v-1.81s-.06-60.95-.06-60.95c0-3.57-2.31-6.73-5.72-7.81L87.3.46c-5.29-1.68-10.7,2.27-10.69,7.83l.04,38.51c.01,11.07,7.12,20.88,17.63,24.32l23.61,7.78-53.28,21.38c-3.48,1.39-5.75,4.77-5.75,8.51l.02,23.27Z"/>
               <path d="M61.33,3.85c-.02-2.84-2.99-4.7-5.56-3.47L4.93,24.8C1.9,26.27-.02,29.35,0,32.73l.18,23.87v1.81s.47,60.94.47,60.94c.03,3.57,2.36,6.71,5.77,7.77l27.35,8.51c5.3,1.65,10.68-2.34,10.64-7.89l-.29-38.51c-.08-11.07-7.26-20.83-17.79-24.21l-23.66-7.62,53.14-21.73c3.47-1.42,5.72-4.8,5.69-8.55l-.17-23.27Z"/>
@@ -29,28 +28,25 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               <path d="M596.73,19.56h-22.59l-34.41,95.83-.38,1.07h20.38l6.38-18.44h38.54l6.38,18.44h20.51l-34.79-96.9ZM571.37,82.49l14-40.48,14,40.48h-28Z"/>
             </svg>
           </div>
-          <p className="font-mono text-xs text-text-secondary">
-            © 2026 EXÍMIA VENTURES.<br/>
+          <p className="font-mono text-[11px] text-dim leading-relaxed">
+            &copy; 2026 EXÍMIA VENTURES.<br/>
             {t.footer.rights}
           </p>
         </div>
 
         {/* Links */}
         <div className="flex flex-col sm:flex-row gap-6 sm:gap-16">
-          <div className="flex flex-col gap-4">
-            <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.nav}</h4>
-            <Link to="/studio" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.studio}</Link>
-            <Link to="/academy" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.academy}</Link>
-            <Link to="/excellence" className="text-text-secondary hover:text-accent-primary text-sm py-2">{t.nav.excellence}</Link>
+          <div className="flex flex-col gap-3">
+            <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.nav}</h4>
+            <Link to="/studio" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.studio}</Link>
+            <Link to="/academy" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.academy}</Link>
+            <Link to="/excellence" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.excellence}</Link>
+            <Link to="/about" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.about}</Link>
           </div>
-          <div className="flex flex-col gap-4">
-            <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.connect}</h4>
-            <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">LinkedIn</a>
-            <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">Instagram</a>
-          </div>
-          <div className="flex flex-col gap-4">
-            <h4 className="font-mono text-xs text-white uppercase tracking-widest">{t.footer.internal}</h4>
-            <a href="https://os.eximiaventures.com.br" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-white text-sm py-2">exímIA OS</a>
+          <div className="flex flex-col gap-3">
+            <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.connect}</h4>
+            <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">LinkedIn</a>
+            <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">Instagram</a>
           </div>
         </div>
 

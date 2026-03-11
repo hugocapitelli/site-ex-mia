@@ -21,7 +21,7 @@ const validateField = (field: string, value: string): string => {
     case 'phone':
       if (value && !/^[\d\s\+\-\(\)]{10,20}$/.test(value)) return 'Please enter a valid phone number';
       return '';
-    case 'challenge':
+    case 'message':
       if (!value.trim()) return 'Message is required';
       if (value.trim().length < 10) return 'Message must be at least 10 characters';
       return '';
@@ -36,8 +36,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     name: '',
     email: '',
     phone: '',
-    frequency: 'general',
-    challenge: ''
+    department: 'general',
+    message: ''
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -58,7 +58,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
   };
 
   const isFormValid = () => {
-    const requiredFields = ['name', 'email', 'challenge'];
+    const requiredFields = ['name', 'email', 'message'];
     return requiredFields.every(f => {
       const val = formState[f as keyof typeof formState];
       return val.trim() && !validateField(f, val);
@@ -68,10 +68,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate all fields
     const allTouched: Record<string, boolean> = {};
     const allErrors: Record<string, string> = {};
-    for (const field of ['name', 'email', 'phone', 'challenge']) {
+    for (const field of ['name', 'email', 'phone', 'message']) {
       allTouched[field] = true;
       allErrors[field] = validateField(field, formState[field as keyof typeof formState]);
     }
@@ -90,8 +89,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
           from_name: formState.name,
           from_email: formState.email,
           phone: formState.phone || 'Não informado',
-          frequency: formState.frequency,
-          message: formState.challenge,
+          department: formState.department,
+          message: formState.message,
         },
         '9tMCvN9EFuY8aCrdJ'
       );
@@ -104,204 +103,208 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
   if (status === 'success') {
     return (
-       <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
-          <div className="text-center max-w-2xl">
-            <div className="w-24 h-24 rounded-full bg-accent-primary/20 flex items-center justify-center mx-auto mb-8 animate-pulse">
-               <span className="material-symbols-outlined text-accent-primary text-5xl">satellite_alt</span>
-            </div>
-            <h1 className="font-display font-black text-5xl md:text-6xl text-white mb-6 tracking-tighter">{t.successTitle}</h1>
-            <p className="text-xl text-text-secondary font-mono mb-12">{t.successDesc}</p>
-            <button
-               onClick={() => setStatus('idle')}
-               className="text-accent-primary font-bold hover:underline underline-offset-8 decoration-dashed"
-            >
-               [ RESET SIGNAL ]
-            </button>
+      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
+        <div className="text-center max-w-2xl">
+          <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-8">
+            <span className="material-symbols-outlined text-accent text-4xl">check_circle</span>
           </div>
-       </div>
+          <h1 className="font-serif font-bold text-4xl md:text-6xl text-cream mb-6">{t.successTitle}</h1>
+          <p className="text-lg text-cream-dim font-light mb-12">{t.successDesc}</p>
+          <button
+            onClick={() => setStatus('idle')}
+            className="font-mono text-xs text-accent hover:text-accent-hover underline underline-offset-4 tracking-wider uppercase transition-colors"
+          >
+            Send another message
+          </button>
+        </div>
+      </div>
     );
   }
 
   if (status === 'error') {
     return (
-       <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
-          <div className="text-center max-w-2xl">
-            <div className="w-24 h-24 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-8">
-               <span className="material-symbols-outlined text-red-500 text-5xl">error</span>
-            </div>
-            <h1 className="font-display font-black text-5xl md:text-6xl text-white mb-6 tracking-tighter">ERRO NA TRANSMISSÃO</h1>
-            <p className="text-xl text-text-secondary font-mono mb-12">Algo deu errado. Tente novamente ou entre em contato pelo LinkedIn.</p>
-            <button
-               onClick={() => setStatus('idle')}
-               className="text-accent-primary font-bold hover:underline underline-offset-8 decoration-dashed"
-            >
-               [ TENTAR NOVAMENTE ]
-            </button>
+      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
+        <div className="text-center max-w-2xl">
+          <div className="w-20 h-20 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-8">
+            <span className="material-symbols-outlined text-red-400 text-4xl">error</span>
           </div>
-       </div>
+          <h1 className="font-serif font-bold text-4xl md:text-6xl text-cream mb-6">Something went wrong.</h1>
+          <p className="text-lg text-cream-dim font-light mb-12">Please try again or reach out via LinkedIn.</p>
+          <button
+            onClick={() => setStatus('idle')}
+            className="font-mono text-xs text-accent hover:text-accent-hover underline underline-offset-4 tracking-wider uppercase transition-colors"
+          >
+            Try again
+          </button>
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in">
       <div className="max-w-[1400px] mx-auto">
-        
-        {/* Header - Centered & Simplified */}
-        <div className="mb-16 text-center">
-           <h1 className="font-display font-black text-6xl md:text-8xl text-white mb-4">{t.title}</h1>
-           <p className="text-text-secondary text-xl md:text-2xl max-w-2xl mx-auto font-light">
-             {t.subtitle}
-           </p>
-        </div>
-        
-        {/* Form Card - Centered */}
-        <div className="max-w-4xl mx-auto">
-           <div className="bento-card p-8 md:p-12 bg-bg-card border-white/10 relative overflow-hidden">
-              {/* Decorative Grid Background */}
-              <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-                 <svg className="w-full h-full" width="100%" height="100%">
-                    <defs>
-                       <pattern id="gridContact" width="40" height="40" patternUnits="userSpaceOnUse">
-                          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="0.5"/>
-                       </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#gridContact)" />
-                 </svg>
+
+        {/* ── Header ── */}
+        <section className="mb-20 md:mb-28">
+          <span className="font-mono text-[10px] text-accent uppercase tracking-[0.2em] block mb-6">
+            Contact
+          </span>
+          <h1 className="font-serif font-bold text-5xl md:text-7xl lg:text-8xl text-cream leading-[0.9] tracking-tight mb-8">
+            {t.title}
+          </h1>
+          <p className="text-cream-dim text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+            {t.subtitle}
+          </p>
+        </section>
+
+        {/* ── Form ── */}
+        <div className="max-w-3xl">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-10">
+
+            {/* Name & Email */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="flex flex-col gap-3">
+                <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
+                  {t.name}
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formState.name}
+                  onChange={(e) => handleChange('name', e.target.value)}
+                  onBlur={() => handleBlur('name')}
+                  className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
+                    touched.name && errors.name
+                      ? 'border-red-500'
+                      : 'border-edge focus:border-accent'
+                  }`}
+                  placeholder="John Doe"
+                />
+                {touched.name && errors.name && (
+                  <span className="text-red-400 text-xs font-mono">{errors.name}</span>
+                )}
               </div>
 
-              <form onSubmit={handleSubmit} className="relative z-10 flex flex-col gap-10">
-                 
-                 {/* Top Row: Name & Email */}
-                 <div className="grid md:grid-cols-2 gap-8">
-                    <div className="flex flex-col gap-3 group">
-                       <label className="font-mono text-xs text-accent-primary uppercase flex justify-between">
-                          {t.name}
-                          <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">REQUIRED</span>
-                       </label>
-                       <input
-                          type="text"
-                          required
-                          value={formState.name}
-                          onChange={(e) => handleChange('name', e.target.value)}
-                          onBlur={() => handleBlur('name')}
-                          className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.name && errors.name ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
-                          placeholder="Ex: John Doe"
-                       />
-                       {touched.name && errors.name && <span className="text-red-400 text-xs font-mono">{errors.name}</span>}
-                    </div>
-                    <div className="flex flex-col gap-3 group">
-                       <label className="font-mono text-xs text-accent-primary uppercase flex justify-between">
-                          {t.email}
-                          <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">REQUIRED</span>
-                       </label>
-                       <input
-                          type="email"
-                          required
-                          value={formState.email}
-                          onChange={(e) => handleChange('email', e.target.value)}
-                          onBlur={() => handleBlur('email')}
-                          className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.email && errors.email ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
-                          placeholder="Ex: john@company.com"
-                       />
-                       {touched.email && errors.email && <span className="text-red-400 text-xs font-mono">{errors.email}</span>}
-                    </div>
-                 </div>
+              <div className="flex flex-col gap-3">
+                <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
+                  {t.email}
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formState.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  onBlur={() => handleBlur('email')}
+                  className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
+                    touched.email && errors.email
+                      ? 'border-red-500'
+                      : 'border-edge focus:border-accent'
+                  }`}
+                  placeholder="john@company.com"
+                />
+                {touched.email && errors.email && (
+                  <span className="text-red-400 text-xs font-mono">{errors.email}</span>
+                )}
+              </div>
+            </div>
 
-                 {/* New Field: Phone */}
-                 <div className="flex flex-col gap-3 group">
-                    <label className="font-mono text-xs text-accent-primary uppercase flex justify-between">
-                       {t.phone}
-                       <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">OPTIONAL</span>
-                    </label>
-                    <input
-                       type="tel"
-                       value={formState.phone}
-                       onChange={(e) => handleChange('phone', e.target.value)}
-                       onBlur={() => handleBlur('phone')}
-                       className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all ${touched.phone && errors.phone ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
-                       placeholder="+55 (11) 99999-9999"
-                    />
-                    {touched.phone && errors.phone && <span className="text-red-400 text-xs font-mono">{errors.phone}</span>}
-                 </div>
+            {/* Phone */}
+            <div className="flex flex-col gap-3">
+              <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
+                {t.phone}
+                <span className="ml-2 text-edge">(optional)</span>
+              </label>
+              <input
+                type="tel"
+                value={formState.phone}
+                onChange={(e) => handleChange('phone', e.target.value)}
+                onBlur={() => handleBlur('phone')}
+                className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
+                  touched.phone && errors.phone
+                    ? 'border-red-500'
+                    : 'border-edge focus:border-accent'
+                }`}
+                placeholder="+55 (11) 99999-9999"
+              />
+              {touched.phone && errors.phone && (
+                <span className="text-red-400 text-xs font-mono">{errors.phone}</span>
+              )}
+            </div>
 
-                 {/* Frequency Selector */}
-                 <div className="flex flex-col gap-3">
-                    <label className="font-mono text-xs text-accent-primary uppercase">{t.frequency}</label>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                       {[
-                          { id: 'general', label: t.freqOptions.general },
-                          { id: 'studio', label: t.freqOptions.studio },
-                          { id: 'academy', label: t.freqOptions.academy },
-                          { id: 'excellence', label: t.freqOptions.excellence }
-                       ].map((option) => (
-                          <button
-                             type="button"
-                             key={option.id}
-                             onClick={() => setFormState({...formState, frequency: option.id})}
-                             className={`py-3 px-3 rounded-lg text-xs font-bold border transition-all ${
-                                formState.frequency === option.id 
-                                   ? 'bg-accent-primary text-black border-accent-primary shadow-[0_0_15px_rgba(212,255,0,0.3)]' 
-                                   : 'bg-transparent text-text-secondary border-white/10 hover:border-white/30 hover:text-white'
-                             }`}
-                          >
-                             {option.label}
-                          </button>
-                       ))}
-                    </div>
-                 </div>
-                 
-                 {/* Message Area */}
-                 <div className="flex flex-col gap-3 group">
-                    <label className="font-mono text-xs text-accent-primary uppercase flex justify-between">
-                       {t.challenge}
-                       <span className="opacity-0 group-focus-within:opacity-100 transition-opacity text-[10px] text-white">ENCRYPTED</span>
-                    </label>
-                    <textarea
-                       rows={6}
-                       required
-                       value={formState.challenge}
-                       onChange={(e) => handleChange('challenge', e.target.value)}
-                       onBlur={() => handleBlur('challenge')}
-                       className={`bg-bg-core/50 border rounded-lg py-4 px-4 text-white focus:outline-none focus:bg-bg-core transition-all resize-none ${touched.challenge && errors.challenge ? 'border-red-500 focus:border-red-500' : 'border-white/10 focus:border-accent-primary'}`}
-                       placeholder="..."
-                    />
-                    {touched.challenge && errors.challenge && <span className="text-red-400 text-xs font-mono">{errors.challenge}</span>}
-                 </div>
+            {/* Department Selector */}
+            <div className="flex flex-col gap-4">
+              <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
+                {t.department}
+              </label>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { id: 'general', label: t.departments.general },
+                  { id: 'studio', label: t.departments.studio },
+                  { id: 'academy', label: t.departments.academy },
+                  { id: 'excellence', label: t.departments.excellence }
+                ].map((option) => (
+                  <button
+                    type="button"
+                    key={option.id}
+                    onClick={() => setFormState({ ...formState, department: option.id })}
+                    className={`px-5 py-2.5 rounded-full font-mono text-[11px] tracking-wider border transition-all duration-300 ${
+                      formState.department === option.id
+                        ? 'bg-accent text-bg-core border-accent font-semibold'
+                        : 'text-cream-dim border-edge hover:border-accent/40 hover:text-cream'
+                    }`}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-                 <div className="relative pt-4 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <button 
-                       type="submit"
-                       disabled={status === 'sending' || !isFormValid()}
-                       className={`
-                          w-full md:w-auto bg-white text-black font-bold py-4 px-12 rounded-full 
-                          hover:bg-accent-primary transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(212,255,0,0.4)]
-                          disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3
-                       `}
-                    >
-                      {status === 'sending' ? (
-                         <>
-                            <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
-                            {t.sending}
-                         </>
-                      ) : (
-                         <>
-                            {t.send}
-                            <span className="material-symbols-outlined text-sm">send</span>
-                         </>
-                      )}
-                    </button>
-                    
-                    {/* Handwritten Response Note */}
-                    <div className="hidden md:flex items-center gap-4 font-hand text-2xl text-text-secondary -rotate-2">
-                      <span>← {t.responseHand}</span>
-                      <svg width="60" height="20" viewBox="0 0 60 20" fill="none" className="stroke-current">
-                         <path d="M60 10 C 40 15, 20 5, 0 10" strokeWidth="2" strokeDasharray="4 4" />
-                      </svg>
-                    </div>
-                 </div>
+            {/* Message */}
+            <div className="flex flex-col gap-3">
+              <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
+                {t.message}
+              </label>
+              <textarea
+                rows={5}
+                required
+                value={formState.message}
+                onChange={(e) => handleChange('message', e.target.value)}
+                onBlur={() => handleBlur('message')}
+                className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors resize-none ${
+                  touched.message && errors.message
+                    ? 'border-red-500'
+                    : 'border-edge focus:border-accent'
+                }`}
+                placeholder="..."
+              />
+              {touched.message && errors.message && (
+                <span className="text-red-400 text-xs font-mono">{errors.message}</span>
+              )}
+            </div>
 
-              </form>
-           </div>
+            {/* Submit */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                disabled={status === 'sending' || !isFormValid()}
+                className="inline-flex items-center gap-3 bg-accent text-bg-core px-10 py-4 rounded-full font-semibold hover:bg-accent-hover transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-bg-core border-t-transparent rounded-full animate-spin" />
+                    {t.sending}
+                  </>
+                ) : (
+                  <>
+                    {t.send}
+                    <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+          </form>
         </div>
 
       </div>

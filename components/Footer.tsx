@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { translations } from '../translations';
+import { getConfig } from '../config';
 
 interface FooterProps {
   lang: Language;
@@ -9,6 +10,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang];
+  const config = getConfig();
 
   return (
     <footer className="bg-bg-core border-t border-edge py-12 px-4 md:py-20 md:px-10">
@@ -46,8 +48,8 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
           </div>
           <div className="flex flex-col gap-3">
             <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.connect}</h4>
-            <a href="https://www.linkedin.com/company/exim-ia/" target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">LinkedIn</a>
-            <a href="https://www.instagram.com/eximia.ia" target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">Instagram</a>
+            <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">LinkedIn</a>
+            <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">Instagram</a>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Language } from '../types';
 import { translations } from '../translations';
+import { getConfig } from '../config';
 
 interface HomePageProps {
   lang: Language;
@@ -15,6 +16,7 @@ const ecosystemStyles: Record<string, { icon: string; href: string; borderHover:
 
 export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
   const t = translations[lang].home;
+  const config = getConfig();
 
   return (
     <div className="bg-bg-core min-h-screen">
@@ -79,7 +81,7 @@ export const HomePage: React.FC<HomePageProps> = ({ lang }) => {
           </p>
           <div className="overflow-hidden">
             <div className="flex items-center gap-12 animate-marquee">
-              {[...['AgroCorp', 'Banco Nacional', 'IndustriaMax', 'TechVentures', 'SaúdePlus', 'RetailGroup'], ...['AgroCorp', 'Banco Nacional', 'IndustriaMax', 'TechVentures', 'SaúdePlus', 'RetailGroup']].map((name, i) => (
+              {[...config.logoBarCompanies, ...config.logoBarCompanies].map((name, i) => (
                 <span key={i} className="flex-shrink-0 font-mono text-sm text-edge-light tracking-wider uppercase px-6">{name}</span>
               ))}
             </div>

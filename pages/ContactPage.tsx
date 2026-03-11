@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Language } from '../types';
 import { translations } from '../translations';
+import { getConfig } from '../config';
 
 interface ContactPageProps {
   lang: Language;
@@ -32,6 +33,7 @@ const validateField = (field: string, value: string): string => {
 
 export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
   const t = translations[lang].contact;
+  const config = getConfig();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -85,8 +87,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
     try {
       await emailjs.send(
-        'service_sh3nf99',
-        'template_t873qzs',
+        config.emailjsServiceId,
+        config.emailjsTemplateId,
         {
           from_name: formState.name,
           from_email: formState.email,
@@ -94,7 +96,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
           department: formState.department,
           message: formState.message,
         },
-        '9tMCvN9EFuY8aCrdJ'
+        config.emailjsPublicKey
       );
       setStatus('success');
     } catch (error) {
@@ -320,7 +322,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
         <div className="reveal reveal-delay-4 max-w-3xl mt-16 grid sm:grid-cols-2 gap-6">
           {/* Schedule */}
           <a
-            href="https://calendly.com/eximia"
+            href={config.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="glass-panel hover-lift p-8 flex items-start gap-4 group hover:border-accent/30 transition-all duration-300"
@@ -338,7 +340,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
 
           {/* WhatsApp */}
           <a
-            href="https://wa.me/5511999999999"
+            href={`https://wa.me/${config.whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             className="glass-panel hover-lift p-8 flex items-start gap-4 group hover:border-accent/30 transition-all duration-300"

@@ -5,6 +5,7 @@ import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
+import { AdminPage } from './pages/AdminPage';
 import { Language } from './types';
 
 const StudioPage = lazy(() => import('./pages/StudioPage').then(m => ({ default: m.StudioPage })));
@@ -55,21 +56,26 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <BrowserRouter>
         <ScrollToTop />
-        <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
-          <ErrorBoundary>
-            <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent" /></div>}>
-              <Routes>
-                <Route path="/" element={<HomePage lang={currentLang} />} />
-                <Route path="/studio" element={<StudioPage lang={currentLang} />} />
-                <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
-                <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
-                <Route path="/about" element={<AboutPage lang={currentLang} />} />
-                <Route path="/contact" element={<ContactPage lang={currentLang} />} />
-                <Route path="*" element={<HomePage lang={currentLang} />} />
-              </Routes>
-            </Suspense>
-          </ErrorBoundary>
-        </Layout>
+        <Routes>
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="*" element={
+            <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
+              <ErrorBoundary>
+                <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent" /></div>}>
+                  <Routes>
+                    <Route path="/" element={<HomePage lang={currentLang} />} />
+                    <Route path="/studio" element={<StudioPage lang={currentLang} />} />
+                    <Route path="/academy" element={<AcademyPage lang={currentLang} />} />
+                    <Route path="/excellence" element={<ExcellencePage lang={currentLang} />} />
+                    <Route path="/about" element={<AboutPage lang={currentLang} />} />
+                    <Route path="/contact" element={<ContactPage lang={currentLang} />} />
+                    <Route path="*" element={<HomePage lang={currentLang} />} />
+                  </Routes>
+                </Suspense>
+              </ErrorBoundary>
+            </Layout>
+          } />
+        </Routes>
       </BrowserRouter>
     </ErrorBoundary>
   );

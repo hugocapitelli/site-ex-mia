@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-
-const WHATSAPP_NUMBER = '5511999999999'; // Configure: Hugo's WhatsApp
-const DEFAULT_MESSAGE = 'Olá, gostaria de saber mais sobre a ExímIA Ventures.';
+import { getConfig } from '../config';
 
 export const WhatsAppButton: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const config = getConfig();
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 3000);
     return () => clearTimeout(timer);
   }, []);
 
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(DEFAULT_MESSAGE)}`;
+  const url = `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(config.whatsappMessage)}`;
 
   return (
     <a

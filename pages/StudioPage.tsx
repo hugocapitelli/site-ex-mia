@@ -13,17 +13,18 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
   const techStack = ['Python', 'TensorFlow', 'PyTorch', 'OpenAI', 'LangChain', 'React'];
 
   return (
-    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in">
+    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10">
       <div className="max-w-[1400px] mx-auto">
 
-        {/* ── Header ── */}
-        <section className="mb-24 md:mb-32">
-          <div>
+        {/* ── HERO ── */}
+        <section className="mb-24 md:mb-32 relative reveal">
+          <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[160px] animate-glow pointer-events-none" />
+          <div className="relative z-10">
             <span className="font-mono text-[10px] text-accent uppercase tracking-[0.2em] block mb-6">
               {t.label}
             </span>
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 pb-10 border-b border-edge">
-              <h1 className="font-serif font-bold text-4xl md:text-6xl lg:text-8xl text-cream leading-[0.95] tracking-tight">
+              <h1 className="font-serif font-bold text-fluid-hero text-cream leading-[0.95] tracking-tight">
                 {t.title}
                 <br />
                 <span className="text-gradient italic">{t.titleHighlight}</span>{' '}
@@ -36,8 +37,8 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Stat + Challenges ── */}
-        <section className="grid md:grid-cols-2 gap-8 mb-24 md:mb-32">
+        {/* ── STAT + CHALLENGES ── */}
+        <section className="grid md:grid-cols-2 gap-8 mb-24 md:mb-32 reveal reveal-delay-1">
           <div className="glass-panel p-10 md:p-14 flex flex-col justify-center">
             <div className="font-serif text-7xl md:text-9xl text-cream leading-none tracking-tight mb-4">
               {t.stat}
@@ -51,7 +52,7 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
 
           <div className="flex flex-col gap-4">
-            {t.challenges.map((item, i) => (
+            {t.challenges.map((item: string, i: number) => (
               <div
                 key={i}
                 className="glass-panel p-6 flex items-center gap-5 hover:bg-bg-float transition-all duration-300 group"
@@ -65,16 +66,16 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── What We Deliver ── */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 border-l-4 border-accent pl-6">
+        {/* ── WHAT WE DELIVER ── */}
+        <section className="mb-24 md:mb-32 reveal reveal-delay-2">
+          <h2 className="font-serif text-fluid-h2 text-cream mb-12 border-l-4 border-accent pl-6">
             {t.architectureTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {t.cards.map((card, i) => (
+            {t.cards.map((card: { title: string; text: string }, i: number) => (
               <div
                 key={i}
-                className="glass-panel p-8 md:p-10 group hover:-translate-y-1 transition-all duration-300"
+                className="glass-panel p-8 md:p-10 group hover-lift"
               >
                 <div className="w-10 h-[2px] bg-accent mb-8 group-hover:w-16 transition-all duration-500" />
                 <h3 className="font-semibold text-cream text-xl mb-4">{card.title}</h3>
@@ -84,16 +85,16 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Process ── */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 text-right">
+        {/* ── PROCESS ── */}
+        <section className="mb-24 md:mb-32 reveal reveal-delay-3">
+          <h2 className="font-serif text-fluid-h2 text-cream mb-12 text-right">
             {t.processTitle}
           </h2>
           <div className="border-t border-edge pt-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-              {t.processSteps.map((step, i) => (
+              {t.processSteps.map((step: { title: string; desc: string }, i: number) => (
                 <div key={i} className="group">
-                  <div className="font-serif text-5xl md:text-6xl text-edge group-hover:text-accent transition-colors duration-500 mb-4">
+                  <div className="font-serif text-5xl text-edge group-hover:text-accent transition-colors duration-500 mb-4">
                     {String(i + 1).padStart(2, '0')}
                   </div>
                   <div className="h-px w-full bg-edge group-hover:bg-accent transition-colors duration-500 mb-5" />
@@ -105,9 +106,9 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Tech Stack ── */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12">
+        {/* ── TECH STACK ── */}
+        <section className="mb-24 md:mb-32 reveal reveal-delay-4">
+          <h2 className="font-serif text-fluid-h2 text-cream mb-12">
             {t.techTitle}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
@@ -122,15 +123,15 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Client Results ── */}
+        {/* ── CLIENT RESULTS ── */}
         {'results' in t && (t as any).results && (
-          <section className="mb-24 md:mb-32">
-            <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 border-l-4 border-accent pl-6">
+          <section className="mb-24 md:mb-32 reveal reveal-delay-5">
+            <h2 className="font-serif text-fluid-h2 text-cream mb-12 border-l-4 border-accent pl-6">
               {(t as any).resultsTitle}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {((t as any).results as { value: string; label: string; desc: string }[]).map((r, i) => (
-                <div key={i} className="glass-panel p-6 md:p-8 text-center group hover:border-accent/30 transition-all">
+                <div key={i} className="glass-panel p-6 md:p-8 text-center group hover:border-accent/30 hover-lift transition-all">
                   <div className="font-serif font-bold text-4xl md:text-5xl text-cream mb-3 group-hover:text-accent transition-colors">
                     {r.value}
                   </div>
@@ -142,9 +143,9 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
           </section>
         )}
 
-        {/* ── CTA ── */}
-        <section className="glass-panel p-10 md:p-16 lg:p-24 text-center">
-          <h2 className="font-serif font-bold text-3xl md:text-5xl lg:text-6xl text-cream mb-10 leading-tight">
+        {/* ── CONTEXTUAL CTA ── */}
+        <section className="glass-panel p-10 md:p-16 lg:p-24 text-center reveal">
+          <h2 className="font-serif font-bold text-fluid-h1 text-cream mb-10 leading-tight">
             {t.cta}
           </h2>
           <Link
@@ -154,6 +155,12 @@ export const StudioPage: React.FC<StudioPageProps> = ({ lang }) => {
             <span>{t.ctaButton}</span>
             <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
           </Link>
+          {'ctaSecondary' in t && (t as any).ctaSecondary && (
+            <p className="mt-6 text-sm text-dim flex items-center justify-center gap-2">
+              <span className="material-symbols-outlined text-[16px] text-dim">phone</span>
+              <span>{(t as any).ctaSecondary}</span>
+            </p>
+          )}
         </section>
 
       </div>

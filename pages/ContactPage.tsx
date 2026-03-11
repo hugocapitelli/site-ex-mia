@@ -37,32 +37,34 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     email: '',
     phone: '',
     department: 'general',
-    message: ''
+    message: '',
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const handleBlur = (field: string) => {
-    setTouched(prev => ({ ...prev, [field]: true }));
+    setTouched((prev) => ({ ...prev, [field]: true }));
     const error = validateField(field, formState[field as keyof typeof formState]);
-    setErrors(prev => ({ ...prev, [field]: error }));
+    setErrors((prev) => ({ ...prev, [field]: error }));
   };
 
   const handleChange = (field: string, value: string) => {
-    setFormState(prev => ({ ...prev, [field]: value }));
+    setFormState((prev) => ({ ...prev, [field]: value }));
     if (touched[field]) {
       const error = validateField(field, value);
-      setErrors(prev => ({ ...prev, [field]: error }));
+      setErrors((prev) => ({ ...prev, [field]: error }));
     }
   };
 
   const isFormValid = () => {
     const requiredFields = ['name', 'email', 'message'];
-    return requiredFields.every(f => {
-      const val = formState[f as keyof typeof formState];
-      return val.trim() && !validateField(f, val);
-    }) && !validateField('phone', formState.phone);
+    return (
+      requiredFields.every((f) => {
+        const val = formState[f as keyof typeof formState];
+        return val.trim() && !validateField(f, val);
+      }) && !validateField('phone', formState.phone)
+    );
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -77,7 +79,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     setTouched(allTouched);
     setErrors(allErrors);
 
-    if (Object.values(allErrors).some(e => e)) return;
+    if (Object.values(allErrors).some((e) => e)) return;
 
     setStatus('sending');
 
@@ -101,65 +103,75 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
     }
   };
 
+  /* ── SUCCESS STATE ── */
   if (status === 'success') {
     return (
-      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
-        <div className="text-center max-w-2xl">
+      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 flex items-center justify-center">
+        <div className="reveal text-center max-w-2xl">
           <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-8">
             <span className="material-symbols-outlined text-accent text-4xl">check_circle</span>
           </div>
-          <h1 className="font-serif font-bold text-4xl md:text-6xl text-cream mb-6">{t.successTitle}</h1>
-          <p className="text-lg text-cream-dim font-light mb-12">{t.successDesc}</p>
+          <h1 className="font-serif font-bold text-fluid-h1 text-cream mb-6">{t.successTitle}</h1>
+          <p className="text-lg text-cream-dim leading-relaxed mb-12">{t.successDesc}</p>
           <button
-            onClick={() => setStatus('idle')}
+            onClick={() => {
+              setStatus('idle');
+              setFormState({ name: '', email: '', phone: '', department: 'general', message: '' });
+              setTouched({});
+              setErrors({});
+            }}
             className="font-mono text-xs text-accent hover:text-accent-hover underline underline-offset-4 tracking-wider uppercase transition-colors"
           >
-            Send another message
+            {t.sendAnother}
           </button>
         </div>
       </div>
     );
   }
 
+  /* ── ERROR STATE ── */
   if (status === 'error') {
     return (
-      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in flex items-center justify-center">
-        <div className="text-center max-w-2xl">
+      <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 flex items-center justify-center">
+        <div className="reveal text-center max-w-2xl">
           <div className="w-20 h-20 rounded-full bg-red-500/20 flex items-center justify-center mx-auto mb-8">
             <span className="material-symbols-outlined text-red-400 text-4xl">error</span>
           </div>
-          <h1 className="font-serif font-bold text-4xl md:text-6xl text-cream mb-6">Something went wrong.</h1>
-          <p className="text-lg text-cream-dim font-light mb-12">Please try again or reach out via LinkedIn.</p>
+          <h1 className="font-serif font-bold text-fluid-h1 text-cream mb-6">{t.errorTitle}</h1>
+          <p className="text-lg text-cream-dim leading-relaxed mb-12">
+            {t.errorDesc}
+          </p>
           <button
             onClick={() => setStatus('idle')}
             className="font-mono text-xs text-accent hover:text-accent-hover underline underline-offset-4 tracking-wider uppercase transition-colors"
           >
-            Try again
+            {t.tryAgain}
           </button>
         </div>
       </div>
     );
   }
 
+  /* ── MAIN FORM ── */
   return (
-    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in">
+    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 overflow-hidden">
       <div className="max-w-[1400px] mx-auto">
 
-        {/* ── Header ── */}
+        {/* ── HERO ── */}
         <section className="mb-20 md:mb-28">
-          <span className="font-mono text-[10px] text-accent uppercase tracking-[0.2em] block mb-6">
+          <span className="reveal font-mono text-[10px] text-accent uppercase tracking-[0.2em] block mb-6">
             Contact
           </span>
-          <h1 className="font-serif font-bold text-5xl md:text-7xl lg:text-8xl text-cream leading-[0.9] tracking-tight mb-8">
+          <h1 className="reveal reveal-delay-1 font-serif font-bold text-fluid-hero text-cream leading-[0.9] tracking-tight mb-8">
             {t.title}
           </h1>
-          <p className="text-cream-dim text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+          <p className="reveal reveal-delay-2 text-cream-dim text-lg md:text-xl leading-relaxed max-w-2xl">
             {t.subtitle}
           </p>
         </section>
 
-        {/* ── Form ── */}
-        <div className="max-w-3xl">
+        {/* ── FORM ── */}
+        <div className="reveal reveal-delay-3 max-w-3xl">
           <form onSubmit={handleSubmit} className="flex flex-col gap-10">
 
             {/* Name & Email */}
@@ -175,9 +187,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                   onChange={(e) => handleChange('name', e.target.value)}
                   onBlur={() => handleBlur('name')}
                   className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
-                    touched.name && errors.name
-                      ? 'border-red-500'
-                      : 'border-edge focus:border-accent'
+                    touched.name && errors.name ? 'border-red-500' : 'border-edge focus:border-accent'
                   }`}
                   placeholder="John Doe"
                 />
@@ -197,9 +207,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                   onChange={(e) => handleChange('email', e.target.value)}
                   onBlur={() => handleBlur('email')}
                   className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
-                    touched.email && errors.email
-                      ? 'border-red-500'
-                      : 'border-edge focus:border-accent'
+                    touched.email && errors.email ? 'border-red-500' : 'border-edge focus:border-accent'
                   }`}
                   placeholder="john@company.com"
                 />
@@ -213,7 +221,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
             <div className="flex flex-col gap-3">
               <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
                 {t.phone}
-                <span className="ml-2 text-edge">(optional)</span>
+                <span className="ml-2 text-edge">({t.optional})</span>
               </label>
               <input
                 type="tel"
@@ -221,9 +229,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 onChange={(e) => handleChange('phone', e.target.value)}
                 onBlur={() => handleBlur('phone')}
                 className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors ${
-                  touched.phone && errors.phone
-                    ? 'border-red-500'
-                    : 'border-edge focus:border-accent'
+                  touched.phone && errors.phone ? 'border-red-500' : 'border-edge focus:border-accent'
                 }`}
                 placeholder="+55 (11) 99999-9999"
               />
@@ -232,7 +238,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
               )}
             </div>
 
-            {/* Department Selector */}
+            {/* Department pills */}
             <div className="flex flex-col gap-4">
               <label className="font-mono text-[10px] text-dim uppercase tracking-widest">
                 {t.department}
@@ -242,7 +248,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                   { id: 'general', label: t.departments.general },
                   { id: 'studio', label: t.departments.studio },
                   { id: 'academy', label: t.departments.academy },
-                  { id: 'excellence', label: t.departments.excellence }
+                  { id: 'excellence', label: t.departments.excellence },
                 ].map((option) => (
                   <button
                     type="button"
@@ -272,9 +278,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 onChange={(e) => handleChange('message', e.target.value)}
                 onBlur={() => handleBlur('message')}
                 className={`bg-transparent border-b py-3 text-cream focus:outline-none transition-colors resize-none ${
-                  touched.message && errors.message
-                    ? 'border-red-500'
-                    : 'border-edge focus:border-accent'
+                  touched.message && errors.message ? 'border-red-500' : 'border-edge focus:border-accent'
                 }`}
                 placeholder="..."
               />
@@ -282,6 +286,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 <span className="text-red-400 text-xs font-mono">{errors.message}</span>
               )}
             </div>
+
+            {/* Privacy Notice */}
+            <p className="text-[11px] text-dim leading-relaxed flex items-start gap-2">
+              <span className="material-symbols-outlined text-sm text-dim mt-0.5">shield</span>
+              {t.privacyNotice}
+            </p>
 
             {/* Submit */}
             <div className="pt-4">
@@ -303,8 +313,46 @@ export const ContactPage: React.FC<ContactPageProps> = ({ lang }) => {
                 )}
               </button>
             </div>
-
           </form>
+        </div>
+
+        {/* ── ALTERNATIVE CONTACT ── */}
+        <div className="reveal reveal-delay-4 max-w-3xl mt-16 grid sm:grid-cols-2 gap-6">
+          {/* Schedule */}
+          <a
+            href="https://calendly.com/eximia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-panel hover-lift p-8 flex items-start gap-4 group hover:border-accent/30 transition-all duration-300"
+          >
+            <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/20 transition-colors">
+              <span className="material-symbols-outlined">calendar_month</span>
+            </div>
+            <div>
+              <h3 className="text-cream font-semibold mb-1">{t.scheduleTitle}</h3>
+              <p className="text-cream-dim text-sm leading-relaxed">
+                {t.scheduleDesc}
+              </p>
+            </div>
+          </a>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-panel hover-lift p-8 flex items-start gap-4 group hover:border-accent/30 transition-all duration-300"
+          >
+            <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 group-hover:bg-accent/20 transition-colors">
+              <span className="material-symbols-outlined">chat</span>
+            </div>
+            <div>
+              <h3 className="text-cream font-semibold mb-1">{t.whatsappTitle}</h3>
+              <p className="text-cream-dim text-sm leading-relaxed">
+                {t.whatsappDesc}
+              </p>
+            </div>
+          </a>
         </div>
 
       </div>

@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ExímIA Ventures | Strategic Intelligence for Leaders</title>
 
-    <!-- SEO Meta Tags -->
     <meta name="description" content="Strategic intelligence that amplifies yours. Consulting, technology, and corporate education for leaders who demand measurable results." />
     <meta name="keywords" content="strategic consulting, AI consulting, operational excellence, corporate education, executive intelligence, business transformation" />
     <meta name="author" content="ExímIA Ventures" />
     <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://eximiaventures.com.br/" />
     <meta property="og:title" content="ExímIA Ventures | Strategic Intelligence for Leaders" />
@@ -19,84 +17,80 @@
     <meta property="og:image" content="https://eximiaventures.com.br/og-image.png" />
     <meta property="og:locale" content="pt_BR" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ExímIA Ventures | Strategic Intelligence for Leaders" />
     <meta name="twitter:description" content="Consulting, technology, and corporate education that turns data into executive decisions." />
     <meta name="twitter:image" content="https://eximiaventures.com.br/og-image.png" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon (eximIA symbol) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120.4 136.01'%3E%3Cpath fill='%23C4A882' d='M58.88,132.06c0,2.84,2.96,4.72,5.53,3.5l51-24.09c3.04-1.44,4.99-4.51,4.98-7.89l-.02-23.87v-1.81s-.06-60.95-.06-60.95c0-3.57-2.31-6.73-5.72-7.81L87.3.46c-5.29-1.68-10.7,2.27-10.69,7.83l.04,38.51c.01,11.07,7.12,20.88,17.63,24.32l23.61,7.78-53.28,21.38c-3.48,1.39-5.75,4.77-5.75,8.51l.02,23.27Z'/%3E%3Cpath fill='%23C4A882' d='M61.33,3.85c-.02-2.84-2.99-4.7-5.56-3.47L4.93,24.8C1.9,26.27-.02,29.35,0,32.73l.18,23.87v1.81s.47,60.94.47,60.94c.03,3.57,2.36,6.71,5.77,7.77l27.35,8.51c5.3,1.65,10.68-2.34,10.64-7.89l-.29-38.51c-.08-11.07-7.26-20.83-17.79-24.21l-23.66-7.62,53.14-21.73c3.47-1.42,5.72-4.8,5.69-8.55l-.17-23.27Z'/%3E%3C/svg%3E" />
     <link rel="canonical" href="https://eximiaventures.com.br/" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-
-    <!-- Brandbook Fonts: Playfair Display (Serif), Inter (Sans), JetBrains Mono (Code) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+
+    <!-- Analytics (Plausible - privacy-first) -->
+    <script defer data-domain="eximiaventures.com.br" src="https://plausible.io/js/script.js"></script>
 
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              /* ── Core Surfaces ── */
-              "bg-core":  "#0A0A0A",
-              "bg-card":  "#111111",
-              "bg-float": "#1A1A1A",
-              "bg-overlay": "#222222",
-
-              /* ── Border Scale ── */
-              "edge":       "#2A2A2A",
-              "edge-light": "#3A3A3A",
-              "edge-hover": "#4A4A4A",
-
-              /* ── Text Scale ── */
-              "cream":     "#E8E0D5",
-              "cream-dim": "#B8B0A5",
-              "dim":       "#666666",
-
-              /* ── Accent: Warm Brown (Primary) ── */
-              "accent":       "#C4A882",
-              "accent-dim":   "#8B7355",
-              "accent-hover": "#D4BC9A",
-
-              /* ── Sage: Green (Secondary) ── */
-              "sage":       "#7C9E8F",
-              "sage-dim":   "#5A7A6B",
-              "sage-hover": "#8CB09F",
-
-              /* ── Atom: Periwinkle (Tertiary) ── */
-              "atom":       "#8B9CC4",
-              "atom-dim":   "#6B7CA4",
-              "atom-hover": "#A0B0D4",
-
-              /* ── Semantic ── */
-              "success": "#22C55E",
-              "warning": "#F59E0B",
-              "error":   "#EF4444",
-              "info":    "#3B82F6",
+              "bg-core":    "#0A0A0A",
+              "bg-card":    "#111111",
+              "bg-float":   "#1A1A1A",
+              "bg-overlay":  "#222222",
+              "edge":        "#2A2A2A",
+              "edge-light":  "#3A3A3A",
+              "edge-hover":  "#4A4A4A",
+              "cream":       "#E8E0D5",
+              "cream-dim":   "#B8B0A5",
+              "dim":         "#666666",
+              "accent":      "#C4A882",
+              "accent-dim":  "#8B7355",
+              "accent-hover":"#D4BC9A",
+              "sage":        "#7C9E8F",
+              "sage-dim":    "#5A7A6B",
+              "sage-hover":  "#8CB09F",
+              "atom":        "#8B9CC4",
+              "atom-dim":    "#6B7CA4",
+              "atom-hover":  "#A0B0D4",
+              "success":     "#22C55E",
+              "warning":     "#F59E0B",
+              "error":       "#EF4444",
+              "info":        "#3B82F6",
             },
             fontFamily: {
               "serif": ["Playfair Display", "Georgia", "serif"],
               "sans":  ["Inter", "system-ui", "sans-serif"],
               "mono":  ["JetBrains Mono", "monospace"],
             },
+            fontSize: {
+              'fluid-hero': 'clamp(3rem, 8vw, 8rem)',
+              'fluid-h1':   'clamp(2.5rem, 5vw, 5rem)',
+              'fluid-h2':   'clamp(1.75rem, 3vw, 3rem)',
+            },
             animation: {
-              'fade-in':     'fadeIn 0.8s ease-out forwards',
-              'fade-in-up':  'fadeInUp 0.8s ease-out forwards',
-              'pulse-slow':  'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'fade-in':       'fadeIn 0.7s ease-out forwards',
+              'fade-in-up':    'fadeInUp 0.7s ease-out forwards',
+              'pulse-slow':    'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'glow':          'glow 8s ease-in-out infinite alternate',
+              'glow-sage':     'glowSage 8s ease-in-out infinite alternate',
+              'glow-atom':     'glowAtom 8s ease-in-out infinite alternate',
+              'float':         'float 6s ease-in-out infinite',
+              'marquee':       'marquee 30s linear infinite',
             },
             keyframes: {
-              fadeIn: {
-                '0%':   { opacity: '0' },
-                '100%': { opacity: '1' },
-              },
-              fadeInUp: {
-                '0%':   { opacity: '0', transform: 'translateY(16px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
+              fadeIn:     { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+              fadeInUp:   { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+              glow:       { '0%': { opacity: '0.3', transform: 'scale(1) translate(0,0)' }, '100%': { opacity: '0.6', transform: 'scale(1.1) translate(2%,-2%)' } },
+              glowSage:   { '0%': { opacity: '0.2', transform: 'scale(1) translate(0,0)' }, '100%': { opacity: '0.4', transform: 'scale(1.05) translate(-2%,2%)' } },
+              glowAtom:   { '0%': { opacity: '0.2', transform: 'scale(1)' }, '100%': { opacity: '0.5', transform: 'scale(1.08)' } },
+              float:      { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+              marquee:    { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
             }
           },
         },
@@ -109,18 +103,14 @@
         font-family: 'Inter', system-ui, sans-serif;
         overflow-x: hidden;
       }
+      html { scroll-behavior: smooth; }
 
-      html {
-        scroll-behavior: smooth;
-      }
-
-      /* Scrollbar */
-      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar { width: 5px; }
       ::-webkit-scrollbar-track { background: #0A0A0A; }
       ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 3px; }
       ::-webkit-scrollbar-thumb:hover { background: #C4A882; }
 
-      /* ── Glass Panel (Brandbook) ── */
+      /* ── Glass Panel ── */
       .glass-panel {
         background: rgba(17, 17, 17, 0.6);
         backdrop-filter: blur(16px);
@@ -129,20 +119,55 @@
         border-radius: 16px;
       }
 
-      /* ── Glass Pill (Navbar) ── */
+      /* ── Glass Pill ── */
       .glass-pill {
-        background: rgba(10, 10, 10, 0.7);
+        background: rgba(10, 10, 10, 0.75);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(232, 224, 213, 0.08);
       }
 
-      /* ── Text Gradient (Brandbook) ── */
+      /* ── Text Gradient ── */
       .text-gradient {
-        background: linear-gradient(to right, #E8E0D5, #C4A882);
+        background: linear-gradient(135deg, #E8E0D5 0%, #C4A882 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+      }
+
+      /* ── Scroll Reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+      .reveal-delay-5 { transition-delay: 0.5s; }
+
+      /* ── Hover Lift ── */
+      .hover-lift {
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-6px);
+      }
+
+      /* ── Number Counter Animation ── */
+      .counter-value {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── Marquee ── */
+      .marquee-track {
+        display: flex;
+        width: max-content;
       }
 
       /* Material Symbols */
@@ -150,7 +175,7 @@
         font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
       }
 
-      /* 3D Transform Utils */
+      /* 3D */
       .perspective-1000 { perspective: 1000px; }
       .rotate-x-12 { transform: rotateX(12deg); }
       .rotate-x-0 { transform: rotateX(0deg); }
@@ -162,6 +187,7 @@
           animation-iteration-count: 1 !important;
           transition-duration: 0.01ms !important;
         }
+        .reveal { opacity: 1; transform: none; }
       }
     </style>
     <script type="importmap">
@@ -177,5 +203,46 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+
+    <!-- Scroll Reveal Observer -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      // Observe after React mounts
+      const startObserving = () => {
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      };
+      // Re-observe on route changes (MutationObserver)
+      const mo = new MutationObserver(() => {
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+      });
+      window.addEventListener('DOMContentLoaded', () => {
+        startObserving();
+        mo.observe(document.getElementById('root'), { childList: true, subtree: true });
+      });
+    </script>
+
+    <!-- Sync html lang with selected language -->
+    <script>
+      // Sync html lang with selected language
+      const langMap = { EN: 'en', PT: 'pt-BR', ES: 'es', IT: 'it' };
+      const updateLang = () => {
+        const stored = localStorage.getItem('eximia-lang');
+        if (stored && langMap[stored]) {
+          document.documentElement.lang = langMap[stored];
+        }
+      };
+      updateLang();
+      window.addEventListener('storage', updateLang);
+      // Also observe for SPA changes
+      const langObs = new MutationObserver(updateLang);
+      langObs.observe(document.getElementById('root'), { childList: true, subtree: true });
+    </script>
   </body>
 </html>

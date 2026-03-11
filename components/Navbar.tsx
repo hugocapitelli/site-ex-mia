@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Language } from '../types';
 import { translations } from '../translations';
@@ -11,8 +11,21 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
   const t = translations[currentLang].nav;
   const location = useLocation();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    if (isLangMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isLangMenuOpen]);
 
   const navLinks = [
     { label: t.studio, path: '/studio' },
@@ -61,7 +74,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentLang, onLanguageChange })
           <div className="hidden md:block w-px h-6 bg-edge mx-1" />
 
           {/* Language */}
-          <div className="relative">
+          <div className="relative" ref={langRef}>
             <button
               onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
               className="w-10 h-10 rounded-full border border-edge flex items-center justify-center gap-0.5 text-[10px] font-mono font-medium text-accent hover:bg-cream/5 transition-all"

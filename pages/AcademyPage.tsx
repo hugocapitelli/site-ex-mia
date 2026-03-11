@@ -11,25 +11,31 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
   const t = translations[lang].academy;
 
   return (
-    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10 animate-fade-in">
+    <div className="bg-bg-core min-h-screen pt-32 pb-20 px-4 md:px-10">
       <div className="max-w-[1400px] mx-auto">
 
-        {/* ── Header ── */}
-        <section className="mb-24 md:mb-32">
-          <div>
+        {/* ── HERO ── */}
+        <section className="mb-24 md:mb-32 relative reveal">
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-sage/5 blur-[160px] animate-glow-sage pointer-events-none" />
+          <div className="relative z-10">
             <span className="font-mono text-[10px] text-sage uppercase tracking-[0.2em] block mb-6">
               {t.label}
             </span>
-            <h1 className="font-serif font-bold text-4xl md:text-6xl lg:text-9xl text-cream leading-[0.9] tracking-tight mb-12">
+            <h1 className="font-serif font-bold text-fluid-hero text-cream leading-[0.9] tracking-tight mb-12">
               <span className="block">{t.title}</span>
-              <span className="block text-gradient italic">{t.subtitle}</span>
+              <span
+                className="block italic"
+                style={{ background: 'linear-gradient(135deg, #E8E0D5, #7C9E8F)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
+              >
+                {t.subtitle}
+              </span>
             </h1>
             <div className="flex flex-col md:flex-row gap-10 items-start max-w-5xl">
               <p className="flex-1 text-cream-dim text-lg md:text-xl font-light leading-relaxed">
                 {t.desc}
               </p>
               <div className="flex flex-wrap gap-3">
-                {t.buttons.map((btn, i) => (
+                {t.buttons.map((btn: string, i: number) => (
                   <button
                     key={i}
                     className={`px-6 py-3 rounded-full font-mono text-xs tracking-wider transition-colors duration-300 border border-sage ${
@@ -46,14 +52,14 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Comparison ── */}
-        <section className="grid md:grid-cols-2 gap-6 mb-24 md:mb-32">
+        {/* ── COMPARISON ── */}
+        <section className="grid md:grid-cols-2 gap-6 mb-24 md:mb-32 reveal reveal-delay-1">
           <div className="glass-panel p-10">
             <h3 className="font-mono text-dim text-sm uppercase tracking-widest mb-8">
               {t.oldWay}
             </h3>
             <ul className="space-y-5">
-              {t.oldItems.map((item, i) => (
+              {t.oldItems.map((item: string, i: number) => (
                 <li key={i} className="flex gap-4 items-start text-dim line-through decoration-dim/30">
                   <span className="text-dim/50 mt-0.5">&times;</span>
                   <span>{item}</span>
@@ -71,7 +77,7 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
                 </h3>
               </div>
               <ul className="space-y-5">
-                {t.newItems.map((item, i) => (
+                {t.newItems.map((item: string, i: number) => (
                   <li key={i} className="flex gap-4 items-start text-cream">
                     <span className="text-sage font-bold mt-0.5">&rarr;</span>
                     <span>{item}</span>
@@ -82,16 +88,16 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Learning Paths ── */}
-        <section className="mb-24 md:mb-32">
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 border-l-4 border-sage pl-6">
+        {/* ── LEARNING PATHS ── */}
+        <section className="mb-24 md:mb-32 reveal reveal-delay-2">
+          <h2 className="font-serif text-fluid-h2 text-cream mb-12 border-l-4 border-sage pl-6">
             {t.pathsTitle}
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {t.paths.map((path, i) => (
+            {t.paths.map((path: { title: string; desc: string }, i: number) => (
               <div
                 key={i}
-                className="glass-panel p-8 md:p-10 hover:border-sage/30 hover:-translate-y-1 group transition-all duration-300"
+                className="glass-panel p-8 md:p-10 hover:border-sage/30 hover-lift group transition-all duration-300"
               >
                 <div className="font-serif text-5xl md:text-6xl text-sage/20 group-hover:text-sage/50 transition-colors duration-500 mb-6">
                   {String(i + 1).padStart(2, '0')}
@@ -111,16 +117,16 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Programs / Catalog ── */}
-        <section>
-          <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 text-right">
+        {/* ── PROGRAMS / CATALOG ── */}
+        <section className="mb-24 md:mb-32 reveal reveal-delay-3">
+          <h2 className="font-serif text-fluid-h2 text-cream mb-12 text-right">
             {t.catalogTitle}
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {t.modules.map((module, i) => (
+            {t.modules.map((module: { title: string; level: string; duration: string }, i: number) => (
               <div
                 key={i}
-                className="glass-panel p-8 md:p-10 group hover:border-sage/40 hover:-translate-y-1 relative transition-all duration-300"
+                className="glass-panel p-8 md:p-10 group hover:border-sage/40 hover-lift relative transition-all duration-300"
               >
                 {i === 2 && (
                   <div className="absolute -top-3 -right-3 bg-sage text-bg-core font-mono text-[10px] uppercase tracking-wider px-3 py-1 rounded-full z-10 font-semibold">
@@ -154,15 +160,15 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
           </div>
         </section>
 
-        {/* ── Numbers ── */}
+        {/* ── NUMBERS ── */}
         {'numbers' in t && (t as any).numbers && (
-          <section className="mt-24 md:mt-32">
-            <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 text-center">
+          <section className="mb-24 md:mb-32 reveal reveal-delay-4">
+            <h2 className="font-serif text-fluid-h2 text-cream mb-12 text-center">
               {(t as any).numbersTitle}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {((t as any).numbers as { value: string; label: string }[]).map((n, i) => (
-                <div key={i} className="glass-panel p-6 md:p-8 text-center group hover:border-sage/30 transition-all">
+                <div key={i} className="glass-panel p-6 md:p-8 text-center group hover:border-sage/30 hover-lift transition-all">
                   <div className="font-serif font-bold text-4xl md:text-5xl text-cream mb-3 group-hover:text-sage transition-colors">
                     {n.value}
                   </div>
@@ -173,15 +179,15 @@ export const AcademyPage: React.FC<AcademyPageProps> = ({ lang }) => {
           </section>
         )}
 
-        {/* ── Differentials ── */}
+        {/* ── DIFFERENTIALS ── */}
         {'differentials' in t && (t as any).differentials && (
-          <section className="mt-24 md:mt-32">
-            <h2 className="font-serif text-3xl md:text-4xl text-cream mb-12 border-l-4 border-sage pl-6">
+          <section className="mb-24 md:mb-32 reveal reveal-delay-5">
+            <h2 className="font-serif text-fluid-h2 text-cream mb-12 border-l-4 border-sage pl-6">
               {(t as any).differentialsTitle}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {((t as any).differentials as { icon: string; title: string; desc: string }[]).map((d, i) => (
-                <div key={i} className="glass-panel p-8 group hover:border-sage/30 hover:-translate-y-1 transition-all duration-300">
+                <div key={i} className="glass-panel p-8 group hover:border-sage/30 hover-lift transition-all duration-300">
                   <div className="w-12 h-12 rounded-xl bg-sage/10 flex items-center justify-center text-sage mb-6 group-hover:bg-sage/20 transition-colors">
                     <span className="material-symbols-outlined">{d.icon}</span>
                   </div>

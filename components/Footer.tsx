@@ -42,6 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             <Link to="/academy" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.academy}</Link>
             <Link to="/excellence" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.excellence}</Link>
             <Link to="/about" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.about}</Link>
+            <Link to="/contact" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.contact || 'Contact'}</Link>
           </div>
           <div className="flex flex-col gap-3">
             <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.connect}</h4>

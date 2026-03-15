@@ -30,27 +30,39 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               <path d="M596.73,19.56h-22.59l-34.41,95.83-.38,1.07h20.38l6.38-18.44h38.54l6.38,18.44h20.51l-34.79-96.9ZM571.37,82.49l14-40.48,14,40.48h-28Z"/>
             </svg>
           </div>
-          <p className="font-mono text-[11px] text-dim leading-relaxed">
-            &copy; 2026 EXÍMIA VENTURES.<br/>
-            {t.footer.rights}
+          <p className="font-mono text-[11px] text-dim leading-relaxed whitespace-pre-line">
+            {config.footerCopyright}
           </p>
         </div>
 
         {/* Links */}
         <div className="flex flex-col sm:flex-row gap-6 sm:gap-16">
-          <div className="flex flex-col gap-3">
-            <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.nav}</h4>
-            <Link to="/studio" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.studio}</Link>
-            <Link to="/academy" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.academy}</Link>
-            <Link to="/excellence" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.excellence}</Link>
-            <Link to="/about" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.about}</Link>
-            <Link to="/contact" className="text-cream-dim hover:text-accent text-sm transition-colors">{t.nav.contact || 'Contact'}</Link>
-          </div>
-          <div className="flex flex-col gap-3">
-            <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.connect}</h4>
-            <a href={config.linkedinUrl} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">LinkedIn</a>
-            <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">Instagram</a>
-          </div>
+          {config.footerNavLinks.length > 0 && (
+            <div className="flex flex-col gap-3">
+              <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.nav}</h4>
+              {config.footerNavLinks.map((link, i) => (
+                link.url.startsWith('/') ? (
+                  <Link key={i} to={link.url} className="text-cream-dim hover:text-accent text-sm transition-colors">
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-accent text-sm transition-colors">
+                    {link.label}
+                  </a>
+                )
+              ))}
+            </div>
+          )}
+          {config.footerSocialLinks.length > 0 && (
+            <div className="flex flex-col gap-3">
+              <h4 className="font-mono text-[10px] text-cream uppercase tracking-widest mb-1">{t.footer.connect}</h4>
+              {config.footerSocialLinks.map((link, i) => (
+                <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="text-cream-dim hover:text-cream text-sm transition-colors">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>

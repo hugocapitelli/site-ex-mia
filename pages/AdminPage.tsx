@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getConfig, saveConfig, defaultConfig, SiteConfig } from '../config';
+import { getConfig, saveConfig, defaultConfig, SiteConfig, FooterLink } from '../config';
 
 const AUTH_KEY = 'eximia-admin-auth';
 
@@ -11,6 +11,8 @@ export const AdminPage: React.FC = () => {
   const [toast, setToast] = useState<string | null>(null);
   const [newCompany, setNewCompany] = useState('');
   const [confirmCode, setConfirmCode] = useState('');
+  const [newNavLink, setNewNavLink] = useState<FooterLink>({ label: '', url: '' });
+  const [newSocialLink, setNewSocialLink] = useState<FooterLink>({ label: '', url: '' });
 
   // Check sessionStorage on mount
   useEffect(() => {
@@ -275,7 +277,183 @@ export const AdminPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Section 4: Logo Bar */}
+        {/* Section 4: Footer */}
+        <section className="glass-panel p-8 md:p-10">
+          <h2 className={sectionHeaderClass}>
+            <span className="material-symbols-outlined text-xs align-middle mr-2">bottom_navigation</span>
+            Footer
+          </h2>
+          <div className="flex flex-col gap-8">
+
+            {/* Copyright */}
+            <div className="flex flex-col gap-2">
+              <label className={labelClass}>Copyright Text</label>
+              <textarea
+                value={config.footerCopyright}
+                onChange={(e) => updateField('footerCopyright', e.target.value)}
+                className={`${inputClass} resize-none`}
+                rows={2}
+                placeholder="© 2026 EXÍMIA VENTURES.&#10;TODOS OS DIREITOS RESERVADOS."
+              />
+              <p className="font-mono text-[10px] text-dim">Use line breaks for multiple lines</p>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex flex-col gap-4">
+              <label className={labelClass}>Navigation Links</label>
+              <div className="flex flex-col gap-3">
+                {config.footerNavLinks.map((link, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <input
+                      type="text"
+                      value={link.label}
+                      onChange={(e) => {
+                        const updated = [...config.footerNavLinks];
+                        updated[i] = { ...updated[i], label: e.target.value };
+                        updateField('footerNavLinks', updated);
+                      }}
+                      className={`${inputClass} flex-1`}
+                      placeholder="Label"
+                    />
+                    <input
+                      type="text"
+                      value={link.url}
+                      onChange={(e) => {
+                        const updated = [...config.footerNavLinks];
+                        updated[i] = { ...updated[i], url: e.target.value };
+                        updateField('footerNavLinks', updated);
+                      }}
+                      className={`${inputClass} flex-1`}
+                      placeholder="/path or https://..."
+                    />
+                    <button
+                      onClick={() => updateField('footerNavLinks', config.footerNavLinks.filter((_, idx) => idx !== i))}
+                      className="w-10 h-10 rounded-lg flex items-center justify-center text-dim hover:text-error hover:bg-error/10 transition-colors flex-shrink-0"
+                      title="Remove"
+                    >
+                      <span className="material-symbols-outlined text-base">close</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  value={newNavLink.label}
+                  onChange={(e) => setNewNavLink(prev => ({ ...prev, label: e.target.value }))}
+                  className={`${inputClass} flex-1`}
+                  placeholder="Label"
+                />
+                <input
+                  type="text"
+                  value={newNavLink.url}
+                  onChange={(e) => setNewNavLink(prev => ({ ...prev, url: e.target.value }))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      if (newNavLink.label.trim() && newNavLink.url.trim()) {
+                        updateField('footerNavLinks', [...config.footerNavLinks, { label: newNavLink.label.trim(), url: newNavLink.url.trim() }]);
+                        setNewNavLink({ label: '', url: '' });
+                      }
+                    }
+                  }}
+                  className={`${inputClass} flex-1`}
+                  placeholder="/path or https://..."
+                />
+                <button
+                  onClick={() => {
+                    if (newNavLink.label.trim() && newNavLink.url.trim()) {
+                      updateField('footerNavLinks', [...config.footerNavLinks, { label: newNavLink.label.trim(), url: newNavLink.url.trim() }]);
+                      setNewNavLink({ label: '', url: '' });
+                    }
+                  }}
+                  className="flex-shrink-0 bg-accent/10 border border-accent/30 text-accent px-5 py-3 rounded-lg font-mono text-sm hover:bg-accent/20 transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex flex-col gap-4">
+              <label className={labelClass}>Social / Connect Links</label>
+              <div className="flex flex-col gap-3">
+                {config.footerSocialLinks.map((link, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <input
+                      type="text"
+                      value={link.label}
+                      onChange={(e) => {
+                        const updated = [...config.footerSocialLinks];
+                        updated[i] = { ...updated[i], label: e.target.value };
+                        updateField('footerSocialLinks', updated);
+                      }}
+                      className={`${inputClass} flex-1`}
+                      placeholder="Label (e.g. LinkedIn)"
+                    />
+                    <input
+                      type="url"
+                      value={link.url}
+                      onChange={(e) => {
+                        const updated = [...config.footerSocialLinks];
+                        updated[i] = { ...updated[i], url: e.target.value };
+                        updateField('footerSocialLinks', updated);
+                      }}
+                      className={`${inputClass} flex-1`}
+                      placeholder="https://..."
+                    />
+                    <button
+                      onClick={() => updateField('footerSocialLinks', config.footerSocialLinks.filter((_, idx) => idx !== i))}
+                      className="w-10 h-10 rounded-lg flex items-center justify-center text-dim hover:text-error hover:bg-error/10 transition-colors flex-shrink-0"
+                      title="Remove"
+                    >
+                      <span className="material-symbols-outlined text-base">close</span>
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-3">
+                <input
+                  type="text"
+                  value={newSocialLink.label}
+                  onChange={(e) => setNewSocialLink(prev => ({ ...prev, label: e.target.value }))}
+                  className={`${inputClass} flex-1`}
+                  placeholder="Label (e.g. YouTube)"
+                />
+                <input
+                  type="url"
+                  value={newSocialLink.url}
+                  onChange={(e) => setNewSocialLink(prev => ({ ...prev, url: e.target.value }))}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      if (newSocialLink.label.trim() && newSocialLink.url.trim()) {
+                        updateField('footerSocialLinks', [...config.footerSocialLinks, { label: newSocialLink.label.trim(), url: newSocialLink.url.trim() }]);
+                        setNewSocialLink({ label: '', url: '' });
+                      }
+                    }
+                  }}
+                  className={`${inputClass} flex-1`}
+                  placeholder="https://..."
+                />
+                <button
+                  onClick={() => {
+                    if (newSocialLink.label.trim() && newSocialLink.url.trim()) {
+                      updateField('footerSocialLinks', [...config.footerSocialLinks, { label: newSocialLink.label.trim(), url: newSocialLink.url.trim() }]);
+                      setNewSocialLink({ label: '', url: '' });
+                    }
+                  }}
+                  className="flex-shrink-0 bg-accent/10 border border-accent/30 text-accent px-5 py-3 rounded-lg font-mono text-sm hover:bg-accent/20 transition-colors"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Section 5: Logo Bar */}
         <section className="glass-panel p-8 md:p-10">
           <h2 className={sectionHeaderClass}>
             <span className="material-symbols-outlined text-xs align-middle mr-2">domain</span>
@@ -328,7 +506,7 @@ export const AdminPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Section 5: Security */}
+        {/* Section 6: Security */}
         <section className="glass-panel p-8 md:p-10">
           <h2 className={sectionHeaderClass}>
             <span className="material-symbols-outlined text-xs align-middle mr-2">shield</span>

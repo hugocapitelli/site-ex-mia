@@ -1,3 +1,8 @@
+export interface FooterLink {
+  label: string;
+  url: string;
+}
+
 export interface SiteConfig {
   // Access
   adminCode: string;
@@ -13,6 +18,11 @@ export interface SiteConfig {
   // Social / Footer
   linkedinUrl: string;
   instagramUrl: string;
+
+  // Footer
+  footerCopyright: string;
+  footerNavLinks: FooterLink[];
+  footerSocialLinks: FooterLink[];
 
   // Logo Bar
   logoBarCompanies: string[];
@@ -33,7 +43,19 @@ export const defaultConfig: SiteConfig = {
   emailjsPublicKey: '9tMCvN9EFuY8aCrdJ',
   linkedinUrl: 'https://www.linkedin.com/company/exim-ia/',
   instagramUrl: 'https://www.instagram.com/eximia.ia',
-  logoBarCompanies: ['AgroCorp', 'Banco Nacional', 'IndustriaMax', 'TechVentures', 'Sa\u00fadePlus', 'RetailGroup'],
+  footerCopyright: '© 2026 EXÍMIA VENTURES.\nTODOS OS DIREITOS RESERVADOS.',
+  footerNavLinks: [
+    { label: 'STUDIO', url: '/studio' },
+    { label: 'ACADEMY', url: '/academy' },
+    { label: 'EXCELLENCE', url: '/excellence' },
+    { label: 'SOBRE', url: '/about' },
+    { label: 'CONTATO', url: '/contact' },
+  ],
+  footerSocialLinks: [
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/company/exim-ia/' },
+    { label: 'Instagram', url: 'https://www.instagram.com/eximia.ia' },
+  ],
+  logoBarCompanies: ['AgroCorp', 'Banco Nacional', 'IndustriaMax', 'TechVentures', 'SaúdePlus', 'RetailGroup'],
   contactEmail: '',
 };
 

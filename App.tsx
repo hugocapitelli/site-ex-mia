@@ -23,6 +23,73 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Per-route title + canonical update for SEO
+const PAGE_META: Record<string, { title: string; description: string; canonical: string }> = {
+  '/': {
+    title: 'ExímIA Ventures | Excelência Empresarial através de IA',
+    description: 'Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos com inteligência artificial.',
+    canonical: 'https://eximiaventures.com.br/',
+  },
+  '/studio': {
+    title: 'Studio | Seu Cockpit de Comando — ExímIA Ventures',
+    description: 'Pare de ser refém de sistemas fragmentados. Studio é o seu cockpit integrado: visão total, controle real, você no comando.',
+    canonical: 'https://eximiaventures.com.br/studio',
+  },
+  '/academy': {
+    title: 'Academy | Educação Corporativa com IA — ExímIA Ventures',
+    description: 'Descubra o que sua equipe já sabe. Academy é educação corporativa que revela potencial humano com inteligência artificial.',
+    canonical: 'https://eximiaventures.com.br/academy',
+  },
+  '/excellence': {
+    title: 'Excellence | Excelência Operacional com IA — ExímIA Ventures',
+    description: 'Visibilidade total, controle real. Excellence integra sistemas e dados para entregar excelência operacional sustentável.',
+    canonical: 'https://eximiaventures.com.br/excellence',
+  },
+  '/contact': {
+    title: "Fale Conosco | ExímIA Ventures",
+    description: 'Entre em contato com a ExímIA Ventures. Consultoria em inteligência artificial para agronegócio e educação corporativa.',
+    canonical: 'https://eximiaventures.com.br/contact',
+  },
+};
+
+const MetaUpdater: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const meta = PAGE_META[pathname] ?? PAGE_META['/'];
+
+    document.title = meta.title;
+
+    const setMeta = (selector: string, attr: string, value: string) => {
+      let el = document.querySelector(selector);
+      if (!el) {
+        el = document.createElement('meta');
+        if (attr === 'name') (el as HTMLMetaElement).name = selector.match(/name="([^"]+)"/)?.[1] ?? '';
+        if (attr === 'property') (el as HTMLMetaElement).setAttribute('property', selector.match(/property="([^"]+)"/)?.[1] ?? '');
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+
+    setMeta('meta[name="description"]', 'name', meta.description);
+    setMeta('meta[property="og:title"]', 'property', meta.title);
+    setMeta('meta[property="og:description"]', 'property', meta.description);
+    setMeta('meta[property="og:url"]', 'property', meta.canonical);
+    setMeta('meta[name="twitter:title"]', 'name', meta.title);
+    setMeta('meta[name="twitter:description"]', 'name', meta.description);
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = meta.canonical;
+  }, [pathname]);
+
+  return null;
+};
+
 // Layout wrapper with Navbar and Footer
 const Layout: React.FC<{
   children: React.ReactNode;
@@ -68,6 +135,7 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <BrowserRouter>
         <ScrollToTop />
+        <MetaUpdater />
         <Layout currentLang={currentLang} onLanguageChange={setCurrentLang}>
           <ErrorBoundary>
             <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-accent-primary" /></div>}>

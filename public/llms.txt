@@ -1,0 +1,31 @@
+# ExímIA Ventures
+
+> Inteligência Artificial que amplifica quem você já é.
+
+ExímIA Ventures é uma empresa brasileira de inteligência artificial especializada em três verticais: consultoria estratégica (Studio), educação corporativa (Academy) e excelência operacional (Excellence). Fundada em Ribeirão Preto, Brasil.
+
+## Produtos e Serviços
+
+### Studio
+Cockpit de comando integrado para executivos e empresas. Elimina a fragmentação de sistemas, entregando visão total e controle real em uma interface unificada. O cliente para de ser refém de ferramentas desconexas e passa a pilotar o negócio.
+
+### Academy
+Plataforma de educação corporativa com IA. Revela o potencial humano que a empresa já possui mas não enxerga. Metodologia baseada em descoberta silenciosa — profissionais aprendem sem exposição pública, emergindo mais capazes.
+
+### Excellence
+Consultoria de excelência operacional. Integra dados, processos e sistemas para entregar visibilidade real e controle sustentável. Foco em agronegócio e setores de alta complexidade operacional.
+
+## Identidade
+
+- **Nome:** ExímIA Ventures (também referenciada como "eximia", "eximiaventures")
+- **Localização:** Ribeirão Preto, Brasil
+- **Segmentos:** Agronegócio, Educação Corporativa, Transformação Digital
+- **Diferencial:** IA aplicada ao ser humano, não ao processo. Amplificação de inteligência, não substituição.
+
+## Links
+
+- Site principal: https://eximiaventures.com.br
+- Studio: https://eximiaventures.com.br/studio
+- Academy: https://eximiaventures.com.br/academy
+- Excellence: https://eximiaventures.com.br/excellence
+- Contato: https://eximiaventures.com.br/contact

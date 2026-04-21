@@ -31,21 +31,70 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://eximiaventures.com.br/" />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD: Organization -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "ExímIA Ventures",
-      "alternateName": ["eximia", "eximiaventures", "exímia"],
+      "alternateName": ["eximia", "eximiaventures", "exímia", "ExImia Ventures"],
       "url": "https://eximiaventures.com.br",
       "logo": "https://eximiaventures.com.br/og-image.svg",
-      "description": "Consultoria, tecnologia e educação corporativa que transforma estratégia em resultados concretos através de inteligência artificial.",
+      "description": "Empresa brasileira de inteligência artificial especializada em consultoria estratégica (Studio), educação corporativa (Academy) e excelência operacional (Excellence).",
+      "knowsAbout": ["Inteligência Artificial", "Agronegócio", "Educação Corporativa", "Transformação Digital", "Excelência Operacional"],
       "foundingLocation": {
         "@type": "Place",
+        "name": "Ribeirão Preto",
         "addressCountry": "BR"
       },
       "sameAs": []
+    }
+    </script>
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ExímIA Ventures",
+      "url": "https://eximiaventures.com.br",
+      "description": "Inteligência Artificial que amplifica quem você já é.",
+      "inLanguage": ["pt-BR", "en"]
+    }
+    </script>
+
+    <!-- JSON-LD: Services -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Serviços ExímIA Ventures",
+      "itemListElement": [
+        {
+          "@type": "Service",
+          "position": 1,
+          "name": "Studio",
+          "description": "Cockpit de comando integrado. Visão total, controle real, você no comando.",
+          "url": "https://eximiaventures.com.br/studio",
+          "provider": { "@type": "Organization", "name": "ExímIA Ventures" }
+        },
+        {
+          "@type": "Service",
+          "position": 2,
+          "name": "Academy",
+          "description": "Educação corporativa com IA. Revela o potencial humano que a empresa já possui.",
+          "url": "https://eximiaventures.com.br/academy",
+          "provider": { "@type": "Organization", "name": "ExímIA Ventures" }
+        },
+        {
+          "@type": "Service",
+          "position": 3,
+          "name": "Excellence",
+          "description": "Excelência operacional com visibilidade total e controle real de dados e processos.",
+          "url": "https://eximiaventures.com.br/excellence",
+          "provider": { "@type": "Organization", "name": "ExímIA Ventures" }
+        }
+      ]
     }
     </script>
 

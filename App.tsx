@@ -20,6 +20,60 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+const PAGE_META: Record<string, { title: string; description: string; canonical: string }> = {
+  '/': {
+    title: 'ExímIA Ventures | Strategic Intelligence for Leaders',
+    description: 'Strategic intelligence that amplifies yours. Consulting, technology, and corporate education that turns data into executive decisions and compounding results.',
+    canonical: 'https://eximiaventures.com.br/',
+  },
+  '/studio': {
+    title: 'Studio | Your Command Cockpit — ExímIA Ventures',
+    description: 'Stop being hostage to fragmented systems. Studio is your integrated command cockpit: total vision, real control, you in command.',
+    canonical: 'https://eximiaventures.com.br/studio',
+  },
+  '/academy': {
+    title: 'Academy | Corporate Education with AI — ExímIA Ventures',
+    description: "Discover what your team already knows. Academy reveals the human potential companies already possess, powered by AI.",
+    canonical: 'https://eximiaventures.com.br/academy',
+  },
+  '/excellence': {
+    title: 'Excellence | Operational Excellence with AI — ExímIA Ventures',
+    description: 'Total visibility, real control. Excellence integrates systems and data to deliver sustainable operational excellence.',
+    canonical: 'https://eximiaventures.com.br/excellence',
+  },
+  '/about': {
+    title: 'About | ExímIA Ventures',
+    description: 'ExímIA Ventures — empresa brasileira de inteligência artificial especializada em consultoria estratégica, educação corporativa e excelência operacional.',
+    canonical: 'https://eximiaventures.com.br/about',
+  },
+  '/contact': {
+    title: "Let's Talk | ExímIA Ventures",
+    description: 'Contact ExímIA Ventures. AI consulting for agribusiness, corporate education, and digital transformation.',
+    canonical: 'https://eximiaventures.com.br/contact',
+  },
+};
+
+const MetaUpdater: React.FC = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const meta = PAGE_META[pathname] ?? PAGE_META['/'];
+    document.title = meta.title;
+    const set = (sel: string, val: string) => {
+      const el = document.querySelector(sel);
+      if (el) el.setAttribute('content', val);
+    };
+    set('meta[name="description"]', meta.description);
+    set('meta[property="og:title"]', meta.title);
+    set('meta[property="og:description"]', meta.description);
+    set('meta[property="og:url"]', meta.canonical);
+    set('meta[name="twitter:title"]', meta.title);
+    set('meta[name="twitter:description"]', meta.description);
+    const canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (canonical) canonical.href = meta.canonical;
+  }, [pathname]);
+  return null;
+};
+
 const Layout: React.FC<{
   children: React.ReactNode;
   currentLang: Language;
@@ -56,6 +110,7 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <BrowserRouter>
         <ScrollToTop />
+        <MetaUpdater />
         <Routes>
           <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={
